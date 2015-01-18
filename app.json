@@ -1,7 +1,7 @@
 {
     "name": "Amphora Profiling for 3D. Part 1",
     "short_name": "amphs1",
-    "thumbnail": "http://archaeologydataservice.ac.uk/archives/view/amphora_ahrb_2005/images/amphorae.jpg",
+    "thumbnail": "http://s3.amazonaws.com/micropasts-amphoras/amphoras.jpg",
     "description": "Creation of amphora profiles that can be revolved into 3D solids",
     "question": "Draw the outline of the amphora in the picture"
 }
