@@ -97,16 +97,16 @@ a.ol-full-screen-true:after {
         		<a class="btn btn-info btn-sm" id="imgLink" target="_blank" data-toggle="tooltip" data-placement="top" title="Opens in a new window" href="http://community.micropasts.org/category/crowdsourcing-support"><i class="glyphicon glyphicon-book"></i> Community Help</a>
         </div>
         
-        <h1 id="step1">Draw the outline of the main object shown in the picture</h1>
+        <h1 id="step1">Draw the external profile, internal profile and other features shown in the drawing</h1>
         <div class="btn-group">
             <button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">Loading photo</button>
-            <button id="outline" type="button" class="btn btn-default btn-type active" name="outline" value="outline">Outline</button>
-            <!-- button id="holes" type="button" class="btn btn-default btn-type" name="holes" value="holes">Holes</button -->
+            <button id="outside" type="button" class="btn btn-default btn-type active" name="outside" value="outside">Outside</button>
+            <button id="inside" type="button" class="btn btn-default btn-type" name="inside" value="inside">Inside</button>
         </div>
         <div class="btn-group">
             <button id="draw" type="button" class="btn btn-default btn-draw active" name="draw" value="draw">Draw</button>
             <button id="edit" type="button" class="btn btn-default btn-draw" name="edit" value="edit">Edit</button>
-            <button id="delete" type="button" class="btn btn-default btn-draw" name="delete" value="delete">Remove all polygons</button>
+            <button id="delete" type="button" class="btn btn-default btn-draw" name="delete" value="delete">Remove all lines</button>
         </div>
         <div class="btn-group">
 
@@ -127,10 +127,10 @@ a.ol-full-screen-true:after {
             Loading next task...
         </div>
         <div id="taskcompleted" class="alert alert-info" style="display:none;">
-            <strong>The task has been completed!</strong> Thanks a lot!
+            <strong>The task has been completed.</strong> Thanks a lot!
         </div>
         <div id="finish" class="alert alert-success" style="display:none;">
-            <strong>Congratulations!</strong> You have participated in all available tasks!
+            <strong>Congratulations.</strong> You have participated in all available tasks!
             <br/>
             <div class="alert-actions">
                 <a class="btn small" href="/">Go back</a>
@@ -208,54 +208,62 @@ a.ol-full-screen-true:after {
   <div class="modal-dialog">
     <div class="modal-content">
 	<!-- Modal header --> 
-		<div class="modal-header">
-               <h3>Photo-masking tutorial for 3D modelling </h3>
-            </div>
-            <div id="0" class="modal-body" style="display:none">
-                <p>
-                This application is very simple (but it does not yet work on mobile devices). When you participate, the platform will load a photograph of an archaeological artefact. Once the image has been loaded, you will be asked to click or tap around the edge of the artefact in order to define a polygon outline. Click once every time you wish to add a point along the edge of the polygon and your final point will snap back onto the one you started with. You can draw one polygon around the entire object or instead draw a series of overlapping polygons if you prefer. In general, we would like you to draw your polygon(s) very slightly inside the actual edge of the artefact. This is because we don't want background pixels near this edge to create a fuzzy border, and we don't need to worry so much about losing a bit of the artefact edge, as the missing few pixels are very likely to appear in one of the other photographs (at least 40 overlapping photographs are likely to exist for each object to support the construction of the 3D model). An example of a successful outline is shown below:
-                </p>
-                <img src="http://micropasts.org/wp-content/uploads/2014/12/Wantage_Tutorial.png" width="100%" class="img-polaroid" alt="An example of an artefact photograph whose outline has been defined" />
-            </div>
-            <div id="1" class="modal-body" style="display:none">
-                <p> 
-                How to use the applilcation's photo-masking toolbar:
-                </p>
-                <img src="http://micropasts.org/wp-content/uploads/2014/11/Photomasking_Toolbar.png" width="100%" alt="Photo-masking Toolbar" />
-                <p>
-                <p><strong>Outline</strong>: This button is selected and enabled by default, indicating that your following actions, i.e. drawing and editing, will relate to the outline of the object.</p>
-                <p><strong>Holes</strong>: This button is usually not available, but will be a part of the photo-masking toolbar whenever you are presented with an object that has 'holes', such as bracelets. In these cases, the background should be masked out and excluded from the object's final mask. Click on 'Holes' before starting to draw or edit a hole in the object.</p>
-                <p><strong>Draw</strong>: This option is selected by default, at the beginning of a task. Click on 'Draw' whenever you want to start drawing an outline of the object. Once you complete an outline polygon, the delineating line will turn from blue to yellow.</p>
-                <p><strong>Edit</strong>: This option is enabled once there is at least one complete polygon drawn. After clicking on 'Edit', choose the polygon you wish to edit by clicking once anywhere inside the polygon. It's line will turn blue, and become available for editing by re-positioning the blue nodes.</p>
-                <p><strong>Remove all polygons</strong>: Use this option if you wish to start over. Clicking this button will remove all drawn polygons.</p>
-                <p> <strong>Save the drawings</strong>: Click on this button when you are done photo-masking the object - it will save and submit your mask.</p>
-                </p>
-                
-                <p>
-                Tip: You could draw a relatively rough polygon around the object to begin with, and then zoom in and click on the 'Edit' button. Then you could edit your polygon much more carefully, moving along the object's outline and fixing your initial polygon to create an accurate mask.
-                </p>
-            </div>    
+					<div class="modal-header">
+				<h3>Profile drawing tutorial for 3D modelling </h3>
+			</div>
+			<div id="0" class="modal-body" style="display:none">
+				<p>
+					This application is very simple (but it does not yet work on mobile devices). When you participate, the platform will load a scanned drawing of a Roman amphora, an example of of one of the many kinds of specialised clay jar that were used to transport goods around the Mediterranean Sea from as early as the Bronze Age, but with a particular popularity in the Roman Republic (c.509-27 BC) and Empire (ca.27 BC- AD 476, but enduring still longer as the Byzantine empire in the eastern Mediterranean). 
+					These drawings are typical of how archaeologists traditionally record the shape and style of containers and other vessel shapes, with the outside of the vessel shown on one side of the drawing and the interior profile shown on the other side (sometimes also with a 'section' shown through other features such as the handles).
+					We are asking for help in digitising these drawings as 2-dimensional lines that can then be automatically revolved into a 3D object. Once the scanned drawing has been loaded, you will be asked to click or tap around the edge of the artefact in order to define each of a series of lines representing the exterior and interior profiles, as well as several other features if they are present. 
+					Click once every time you wish to add a point along the edge of a line and your final point will snap back onto the one you started with. You must draw one line only for each of these features. In general, we would like you to draw your lines roughly in the middle of pixellated lines you see the and as carefully as you can.
+				</p>
+				<img src="http://micropasts.org/wp-content/uploads/2014/12/Wantage_Tutorial.png" width="100%" class="img-polaroid" alt="An example of an artefact photograph whose outline has been defined" />
+			</div>
+			<div id="1" class="modal-body" style="display:none">
+				<p>
+					How to use the applilcation's photo-masking toolbar:
+				</p>
+				<img src="http://micropasts.org/wp-content/uploads/2014/11/Photomasking_Toolbar.png" width="100%" alt="Photo-masking Toolbar" />
+				<p>
+				<p>
+					<strong>Outside</strong>: This button is selected and enabled by default, indicating that your following actions, i.e. drawing and editing, will relate to the outline of the object.
+				</p>
+				<p>
+					<strong>Inside</strong>: This button is usually not available, but will be a part of the photo-masking toolbar whenever you are presented with an object that has 'holes', such as bracelets. In these cases, the background should be masked out and excluded from the object's final mask. Click on 'Holes' before starting to draw or edit a hole in the object.
+				</p>
+				<p>
+					<strong>Draw</strong>: This option is selected by default, at the beginning of a task. Click on 'Draw' whenever you want to start drawing an outline of the object. Once you complete an outline polygon, the delineating line will turn from blue to yellow.
+				</p>
+				<p>
+					<strong>Edit</strong>: This option is enabled once there is at least one complete line drawn. After clicking on 'Edit', choose the line you wish to edit by clicking once anywhere on it. It will turn blue, and become available for editing such that you will be able to re-position the blue nodes that give the line its shape.
+				</p>
+				<p>
+					<strong>Remove all lines</strong>: Use this option if you wish to start over. Clicking this button will remove all drawn lines.
+				</p>
+				<p>
+					<strong>Save the drawings</strong>: Click on this button when you are done digitising the object - it will save and submit your work.
+				</p>
+				</p>
+			</div>
 
-            <div id="2" class="modal-body" style="display:none">  
-                <p>
-                During the task, you can always return to this tutorial via the "Tutorial" button.
-                </p>
-                <p>
-                An example of a finished <a href="http://micropasts.org/3D">3D model</a> has now been completed.	
-                </p>
-            	  <p>
-                To find out how the project is progressing, to suggest changes to this application or to propose new research ideas based what you have photo-masked, please have a look at our <a href="http://community.micropasts.org" title="Community forum">community forum</a>.
-                </p>
-            </div>
+			<div id="2" class="modal-body" style="display:none">
+				<p>
+					During the task, you can always return to this tutorial via the "Tutorial" button.
+				</p>
+				<p>
+					An example of a finished <a href="http://micropasts.org/3D">3D model</a> has now been completed.
+				</p>
+				<p>
+					To find out how the project is progressing, to suggest changes to this application or to propose new research ideas based what you have photo-masked, please have a look at our <a href="http://community.micropasts.org" title="Community forum">community forum</a>.
+				</p>
+			</div>
 
-	<!-- End of stepped modal body -->
-
-	<!-- Modal footer -->
-	<div class="modal-footer">
-                <a id="prevBtn" href="#" onclick="showStep('prev')" class="btn btn-default">Previous</a>
-                <a id="nextBtn" href="#" onclick="showStep('next')" class="btn btn-success">Next</a>
-                <button id="startContrib" data-dismiss="modal" class="btn btn-primary" style="display:none"><i class="glyphicon glyphicon-thumbs-up"></i> Let's start!</a>
-            </div>
+			<div class="modal-footer">
+				<a id="prevBtn" href="#" onclick="showStep('prev')" class="btn btn-default">Previous</a>
+				<a id="nextBtn" href="#" onclick="showStep('next')" class="btn btn-success">Next</a>
+				<a id="startContrib" href="../photomaskingWantage/newtask" class="btn btn-primary" style="display:none"><i class="glyphicon glyphicon-thumbs-up"></i> Let's start!</a>
+			</div>
 	</div>
   </div>
 </div>
@@ -295,13 +303,13 @@ function loadUserProgress() {
     	
     	console.log('Tasks done so far: ' + data.done);
     	
-        if ((data.done == 1) && ($.cookie('surveyPhotoMask') === undefined)){
+        if ((data.done == 1) && ($.cookie('surveyAmphRev') === undefined)){
            $("#survey").modal('show');
-           $.cookie('surveyPhotoMask', 'shown', { path: '/'});
+           $.cookie('surveyAmphRev', 'shown', { path: '/'});
         }
-        if ((data.done == 25) && ($.cookie('survey25PhotoMask') === undefined)){
+        if ((data.done == 25) && ($.cookie('survey25AmphRev') === undefined)){
            $("#survey25").modal('show');
-           $.cookie('survey25PhotoMask', 'shown', { path: '/'});
+           $.cookie('survey25AmphRev', 'shown', { path: '/'});
         }
         var pct = Math.round((data.done*100)/data.total);
         $("#progress").css("width", pct.toString() +"%");
@@ -322,8 +330,8 @@ pybossa.taskLoaded(function(task, deferred) {
         $("#draw").addClass("disabled");
         $("#edit").addClass("disabled");
         $("#delete").addClass("disabled");
-        $("#outline").addClass("disabled");
-        $("#holes").addClass("disabled");
+        $("#outside").addClass("disabled");
+        $("#inside").addClass("disabled");
         $("#map").append(div_map);
         div_map.attr("id", "map_" + task.id);
         img.load(function() {
@@ -332,8 +340,8 @@ pybossa.taskLoaded(function(task, deferred) {
             $("#draw").removeClass("disabled");
             $("#edit").removeClass("disabled");
             $("#delete").removeClass("disabled");
-            $("#outline").removeClass("disabled");
-            $("#holes").removeClass("disabled");
+            $("#outside").removeClass("disabled");
+            $("#inside").removeClass("disabled");
             $("#status").text("Photo loaded!");
         });
         img.attr('src', task.info.url_b).css('height', 460);
@@ -345,7 +353,7 @@ pybossa.taskLoaded(function(task, deferred) {
         task.info.image = img;
 
         // Maps always need a projection, but the static image is not geo-referenced,
-        // and are only measured in pixels.  So, we create a fake projection that the
+        // and is only measured in pixels.  So, we create a fake projection that the
         // map can use to properly display the layer.
         task.pixelProjection = new ol.proj.Projection({
           code: 'pixel',
@@ -369,11 +377,11 @@ pybossa.taskLoaded(function(task, deferred) {
           })
         })];
         
-        task.source = new ol.source.Vector();
-        task.source_holes = new ol.source.Vector();
+        task.source_outside = new ol.source.Vector();
+        task.source_inside = new ol.source.Vector();
         
-        task.vector = new ol.layer.Vector({
-          source: task.source,
+        task.outside = new ol.layer.Vector({
+          source: task.source_outside,
           //styleFunction: function(feature, resolution) {
           //  return task.styleArray;
           //}
@@ -394,8 +402,8 @@ pybossa.taskLoaded(function(task, deferred) {
                     })
           });
 
-        task.holes = new ol.layer.Vector({
-          source: task.source_holes,
+        task.inside = new ol.layer.Vector({
+          source: task.source_inside,
           //styleFunction: function(feature, resolution) {
           //  return task.styleArray;
           //}
@@ -434,30 +442,30 @@ pybossa.taskLoaded(function(task, deferred) {
                       })
         });
 
-        // Modifiers for vector outline
-        task.modify = new ol.interaction.Modify({ 
-                                                layer: task.vector,
+        // Modifiers for external profile (outside)
+        task.modify_outside = new ol.interaction.Modify({ 
+                                                layer: task.outside,
                                                 featureOverlay: task.overlay });
-        task.select = new ol.interaction.Select({ 
-                                                layer: task.vector,
+        task.select_outside = new ol.interaction.Select({ 
+                                                layer: task.outside,
                                                 featureOverlay: task.overlay });
 
-        // Modifiers for vector holes
-        task.modify_holes = new ol.interaction.Modify({ 
-                                                layer: task.holes,
+        // Modifiers for internal profile (inside)
+        task.modify_inside = new ol.interaction.Modify({ 
+                                                layer: task.inside,
                                                 featureOverlay: task.overlay });
-        task.select_holes = new ol.interaction.Select({ 
-                                                layer: task.holes,
+        task.select_inside = new ol.interaction.Select({ 
+                                                layer: task.inside,
                                                 featureOverlay: task.overlay });
 
         task.map = new ol.Map({
-          //interactions: ol.interaction.defaults().extend([task.select, task.modify, task.select_holes, task.modify_holes]),
+          //interactions: ol.interaction.defaults().extend([task.select_outside, task.modify_outside, task.select_inside, task.modify_inside]),
           layers: [
             new ol.layer.Image({
               source: new ol.source.ImageStatic({
                 attributions: [
                   new ol.Attribution({
-                    html: '&copy; <a href="http://micropasts.org">Micropasts</a>'
+                    html: '&copy; <a href="http://micropasts.org">MicroPasts</a>'
                   })
                 ],
                 url: task.info.url_b,
@@ -467,8 +475,8 @@ pybossa.taskLoaded(function(task, deferred) {
               })
             })
           , 
-          task.vector,
-          task.holes,
+          task.outside,
+          task.inside,
           ],
           renderer: 'canvas',
           target: 'map_' + task.id,
@@ -486,37 +494,37 @@ pybossa.taskLoaded(function(task, deferred) {
         var typeSelect = document.getElementById('type');
         
         //task.draw; // global so we can remove it later
-        task.draw = new ol.interaction.Draw({
-          source: task.source,
-          type: 'Polygon',
+        task.draw_outside = new ol.interaction.Draw({
+          source: task.source_outside,
+          type: 'LineString',
         });
 
-        task.draw_holes = new ol.interaction.Draw({
-          source: task.source_holes,
-          type: 'Polygon',
+        task.draw_inside = new ol.interaction.Draw({
+          source: task.source_inside,
+          type: 'LineString',
         });
 
-        // When the first polygon is completed, remove the drawInteraction
-        task.draw.on('drawend', function(evt) {
-                task.polygon = true;
+        // When the first external line is completed, remove the drawInteraction
+        task.draw_outside.on('drawend', function(evt) {
+                task.outside = true;
                 $("#btn-save").removeClass("disabled");
                 });
 
-        // When the first hole is completed, remove the drawInteraction
-        task.draw_holes.on('drawend', function(evt) {
-                task.holes = true;
+        // When the first internal line is completed, remove the drawInteraction
+        task.draw_inside.on('drawend', function(evt) {
+                task.inside = true;
                 $("#btn-save").removeClass("disabled");
                 });
 
-        task.map.addInteraction(task.draw);
+        task.map.addInteraction(task.draw_outside);
 
         task.answer = {
                  'task_id': task.id,
-                 'outline': [],
-                 'holes': [],
+                 'outside': [],
+                 'inside': [],
                  'img': task.info.url_b};
-        task.polygon = false;
-        task.holes = false;
+        task.outside = false;
+        task.inside = false;
         }
     else {
         deferred.resolve(task);
@@ -530,68 +538,68 @@ pybossa.presentTask(function(task, deferred) {
         $('#task-id').html(task.id);
         $("#map_" + task.id).show();
 
-        // Code for drawing outlines or holes
+        // Code for drawing lines
         $('.btn-type').off('click').on('click', function(evt) {
             var answer = $(evt.target).attr("value");
             if (typeof answer != 'undefined'){
-                if (answer == 'holes') {
-                    $("#outline").removeClass('active');
-                    $("#holes").addClass('active');
-                    task.map.removeInteraction(task.draw);
-                    task.map.addInteraction(task.draw_holes);
+                if (answer == 'inside') {
+                    $("#outside").removeClass('active');
+                    $("#inside").addClass('active');
+                    task.map.removeInteraction(task.draw_outside);
+                    task.map.addInteraction(task.draw_inside);
                 }
                 else {
-                    $("#holes").removeClass('active');
-                    $("#outline").addClass('active');
-                    task.map.addInteraction(task.draw);
-                    task.map.removeInteraction(task.draw_holes);
+                    $("#inside").removeClass('active');
+                    $("#outside").addClass('active');
+                    task.map.addInteraction(task.draw_outside);
+                    task.map.removeInteraction(task.draw_inside);
                 }
             }
         });
 
-        // Code for editing/drawing polygons
+        // Code for editing/drawing lines
         $('.btn-draw').off('click').on('click', function(evt) {
             var answer = $(evt.target).attr("value");
             if (typeof answer != 'undefined'){
                 if (answer == 'draw') {
                     $("#edit").removeClass("active");
                     $("#draw").addClass("active");
-                    if ($("#outline").hasClass("active")) {
-                        task.map.removeInteraction(task.modify);
-                        task.map.removeInteraction(task.select);
-                        task.map.addInteraction(task.draw);
+                    if ($("#outside").hasClass("active")) {
+                        task.map.removeInteraction(task.modify_outside);
+                        task.map.removeInteraction(task.select_outside);
+                        task.map.addInteraction(task.draw_outside);
                     }
                     else {
-                        task.map.removeInteraction(task.modify_holes);
-                        task.map.removeInteraction(task.select_holes);
-                        task.map.addInteraction(task.draw_holes);
+                        task.map.removeInteraction(task.modify_inside);
+                        task.map.removeInteraction(task.select_inside);
+                        task.map.addInteraction(task.draw_inside);
                     }
                 }
                 if (answer == 'edit') {
                     $("#draw").removeClass("active");
                     $("#edit").addClass("active");
-                    if ($("#outline").hasClass("active")) {
-                        task.map.removeInteraction(task.draw);
-                        task.map.addInteraction(task.select);
-                        task.map.addInteraction(task.modify);
+                    if ($("#outside").hasClass("active")) {
+                        task.map.removeInteraction(task.draw_outside);
+                        task.map.addInteraction(task.select_outside);
+                        task.map.addInteraction(task.modify_outside);
                     }
                     else {
-                        task.map.removeInteraction(task.draw_holes);
-                        task.map.addInteraction(task.select_holes);
-                        task.map.addInteraction(task.modify_holes);
+                        task.map.removeInteraction(task.draw_inside);
+                        task.map.addInteraction(task.select_inside);
+                        task.map.addInteraction(task.modify_inside);
                     }
                 }
 
                 if (answer == 'delete') {
-                    if ($("#outline").hasClass("active")) {
+                    if ($("#outside").hasClass("active")) {
                         $("#draw").removeClass("active");
                         $("#edit").removeClass("active");
                         $("#delete").addClass("active");
-                        var features = task.source.getAllFeatures();
+                        var features = task.source_outside.getAllFeatures();
                         for(i=0;i<features.length;i++) {
-                            task.source.removeFeature(features[i]);
+                            task.source_outside.removeFeature(features[i]);
                         }
-                        task.polygon = false;
+                        task.outside = false;
                         $("#draw").addClass("active");
                         $("#delete").removeClass("active");
                     }
@@ -599,11 +607,11 @@ pybossa.presentTask(function(task, deferred) {
                         $("#draw").removeClass("active");
                         $("#edit").removeClass("active");
                         $("#delete").addClass("active");
-                        var features = task.source_holes.getAllFeatures();
+                        var features = task.source_inside.getAllFeatures();
                         for(i=0;i<features.length;i++) {
-                            task.source_holes.removeFeature(features[i]);
+                            task.source_inside.removeFeature(features[i]);
                         }
-                        task.holes = false;
+                        task.inside = false;
                         $("#draw").addClass("active");
                         $("#delete").removeClass("active");
                     }
@@ -620,28 +628,27 @@ pybossa.presentTask(function(task, deferred) {
                 //console.log(task.map.source.features);
                 console.log(task.source.features);
 
-                if (task.polygon) {
-                    var features = task.source.getAllFeatures();
-                    var polygons = [];
+                if (task.outside) {
+                    var features = task.source_outside.getAllFeatures();
+                    var lines = [];
                     for(i=0;i<features.length;i++) {
                         var g = features[i].getGeometry();
-                        polygons.push(g.getCoordinates());
+                        lines.push(g.getCoordinates());
                     }
-                    //task.answer = {
-                    //    'task_id': task.id,
-                    //    'polygon': polygons,
-                    //    'img': task.info.url_b};
-                    task.answer.outline = polygons;
+                    task.answer = {
+                        'task_id': task.id,
+                        'LineString': lines,
+                        'img': task.info.url_b};
+                    task.answer.outside = lines;
 
-                    if (task.holes) {
-                        var features = task.source_holes.getAllFeatures();
-                        var polygons = [];
+                    if (task.inside) {
+                        var features = task.source_inside.getAllFeatures();
+                        var lines = [];
                         for(i=0;i<features.length;i++) {
                             var g = features[i].getGeometry();
-                            polygons.push(g.getCoordinates());
+                            lines.push(g.getCoordinates());
                         }
-
-                        task.answer.holes = polygons;
+                        task.answer.inside = lines;
                     }
 
                     pybossa.saveTask(task.id, task.answer).done(function() {
@@ -652,7 +659,7 @@ pybossa.presentTask(function(task, deferred) {
                     });
                     $("#loading").fadeIn(500);
                     
-                } // end if task.polygon
+                }
             }
             else {
                 $("#error").show();
