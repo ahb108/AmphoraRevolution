@@ -97,16 +97,15 @@ a.ol-full-screen-true:after {
         		<a class="btn btn-info btn-sm" id="imgLink" target="_blank" data-toggle="tooltip" data-placement="top" title="Opens in a new window" href="http://community.micropasts.org/category/crowdsourcing-support"><i class="glyphicon glyphicon-book"></i> Community Help</a>
         </div>
         
-        <h1 id="step1">Draw the external profile, internal profile and other features shown in the drawing</h1>
+        <h1 id="step1">Now draw the external profile of the vessel in this drawing:</h1>
         <div class="btn-group">
             <button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">Loading photo</button>
-            <button id="outside" type="button" class="btn btn-default btn-type active" name="outside" value="outside">Outside</button>
-            <button id="inside" type="button" class="btn btn-default btn-type" name="inside" value="inside">Inside</button>
+            <button id="external" type="button" class="btn btn-default btn-type active" name="external" value="external">external</button>
         </div>
         <div class="btn-group">
             <button id="draw" type="button" class="btn btn-default btn-draw active" name="draw" value="draw">Draw</button>
             <button id="edit" type="button" class="btn btn-default btn-draw" name="edit" value="edit">Edit</button>
-            <button id="delete" type="button" class="btn btn-default btn-draw" name="delete" value="delete">Remove all lines</button>
+            <button id="delete" type="button" class="btn btn-default btn-draw" name="delete" value="delete">Delete previous</button>
         </div>
         <div class="btn-group">
 
@@ -214,7 +213,7 @@ a.ol-full-screen-true:after {
 			<div id="0" class="modal-body" style="display:none">
 				<p>
 					This application is very simple (but it does not yet work on mobile devices). When you participate, the platform will load a scanned drawing of a Roman amphora, an example of of one of the many kinds of specialised clay jar that were used to transport goods around the Mediterranean Sea from as early as the Bronze Age, but with a particular popularity in the Roman Republic (c.509-27 BC) and Empire (ca.27 BC- AD 476, but enduring still longer as the Byzantine empire in the eastern Mediterranean). 
-					These drawings are typical of how archaeologists traditionally record the shape and style of containers and other vessel shapes, with the outside of the vessel shown on one side of the drawing and the interior profile shown on the other side (sometimes also with a 'section' shown through other features such as the handles).
+					These drawings are typical of how archaeologists traditionally record the shape and style of containers and other vessel shapes, with the external of the vessel shown on one side of the drawing and the interior profile shown on the other side (sometimes also with a 'section' shown through other features such as the handles).
 					We are asking for help in digitising these drawings as 2-dimensional lines that can then be automatically revolved into a 3D object. Once the scanned drawing has been loaded, you will be asked to click or tap around the edge of the artefact in order to define each of a series of lines representing the exterior and interior profiles, as well as several other features if they are present. 
 					Click once every time you wish to add a point along the edge of a line and your final point will snap back onto the one you started with. You must draw one line only for each of these features. In general, we would like you to draw your lines roughly in the middle of pixellated lines you see the and as carefully as you can.
 				</p>
@@ -227,10 +226,7 @@ a.ol-full-screen-true:after {
 				<img src="http://micropasts.org/wp-content/uploads/2014/11/Photomasking_Toolbar.png" width="100%" alt="Photo-masking Toolbar" />
 				<p>
 				<p>
-					<strong>Outside</strong>: This button is selected and enabled by default, indicating that your following actions, i.e. drawing and editing, will relate to the outline of the object.
-				</p>
-				<p>
-					<strong>Inside</strong>: This button is usually not available, but will be a part of the photo-masking toolbar whenever you are presented with an object that has 'holes', such as bracelets. In these cases, the background should be masked out and excluded from the object's final mask. Click on 'Holes' before starting to draw or edit a hole in the object.
+					<strong>external</strong>: This button is selected and enabled by default, indicating that your following actions, i.e. drawing and editing, will relate to the outline of the object.
 				</p>
 				<p>
 					<strong>Draw</strong>: This option is selected by default, at the beginning of a task. Click on 'Draw' whenever you want to start drawing an outline of the object. Once you complete an outline polygon, the delineating line will turn from blue to yellow.
@@ -330,8 +326,7 @@ pybossa.taskLoaded(function(task, deferred) {
         $("#draw").addClass("disabled");
         $("#edit").addClass("disabled");
         $("#delete").addClass("disabled");
-        $("#outside").addClass("disabled");
-        $("#inside").addClass("disabled");
+        $("#external").addClass("disabled");
         $("#map").append(div_map);
         div_map.attr("id", "map_" + task.id);
         img.load(function() {
@@ -340,8 +335,7 @@ pybossa.taskLoaded(function(task, deferred) {
             $("#draw").removeClass("disabled");
             $("#edit").removeClass("disabled");
             $("#delete").removeClass("disabled");
-            $("#outside").removeClass("disabled");
-            $("#inside").removeClass("disabled");
+            $("#external").removeClass("disabled");
             $("#status").text("Photo loaded!");
         });
         img.attr('src', task.info.url_b).css('height', 460);
@@ -377,11 +371,10 @@ pybossa.taskLoaded(function(task, deferred) {
           })
         })];
         
-        task.source_outside = new ol.source.Vector();
-        task.source_inside = new ol.source.Vector();
+        task.source_external = new ol.source.Vector();
         
-        task.outside = new ol.layer.Vector({
-          source: task.source_outside,
+        task.external = new ol.layer.Vector({
+          source: task.source_external,
           //styleFunction: function(feature, resolution) {
           //  return task.styleArray;
           //}
@@ -397,28 +390,6 @@ pybossa.taskLoaded(function(task, deferred) {
                       radius: 7,
                       fill: new ol.style.Fill({
                         color: '#ffcc33'
-                        })
-                      })
-                    })
-          });
-
-        task.inside = new ol.layer.Vector({
-          source: task.source_inside,
-          //styleFunction: function(feature, resolution) {
-          //  return task.styleArray;
-          //}
-          style: new ol.style.Style({
-                fill: new ol.style.Fill({
-                      color: 'rgba(255, 255, 255, 0.2)'
-                    }),
-                    stroke: new ol.style.Stroke({
-                      color: '#00CC99',
-                      width: 2
-                    }),
-                    image: new ol.style.Circle({
-                      radius: 7,
-                      fill: new ol.style.Fill({
-                        color: '#00CC99'
                         })
                       })
                     })
@@ -442,24 +413,16 @@ pybossa.taskLoaded(function(task, deferred) {
                       })
         });
 
-        // Modifiers for external profile (outside)
-        task.modify_outside = new ol.interaction.Modify({ 
-                                                layer: task.outside,
+        // Modifiers for external profile (external)
+        task.modify_external = new ol.interaction.Modify({ 
+                                                layer: task.external,
                                                 featureOverlay: task.overlay });
-        task.select_outside = new ol.interaction.Select({ 
-                                                layer: task.outside,
-                                                featureOverlay: task.overlay });
-
-        // Modifiers for internal profile (inside)
-        task.modify_inside = new ol.interaction.Modify({ 
-                                                layer: task.inside,
-                                                featureOverlay: task.overlay });
-        task.select_inside = new ol.interaction.Select({ 
-                                                layer: task.inside,
+        task.select_external = new ol.interaction.Select({ 
+                                                layer: task.external,
                                                 featureOverlay: task.overlay });
 
         task.map = new ol.Map({
-          //interactions: ol.interaction.defaults().extend([task.select_outside, task.modify_outside, task.select_inside, task.modify_inside]),
+          //interactions: ol.interaction.defaults().extend([task.select_external, task.modify_external]),
           layers: [
             new ol.layer.Image({
               source: new ol.source.ImageStatic({
@@ -475,8 +438,7 @@ pybossa.taskLoaded(function(task, deferred) {
               })
             })
           , 
-          task.outside,
-          task.inside,
+          task.external,
           ],
           renderer: 'canvas',
           target: 'map_' + task.id,
@@ -494,37 +456,24 @@ pybossa.taskLoaded(function(task, deferred) {
         var typeSelect = document.getElementById('type');
         
         //task.draw; // global so we can remove it later
-        task.draw_outside = new ol.interaction.Draw({
-          source: task.source_outside,
-          type: 'LineString',
-        });
-
-        task.draw_inside = new ol.interaction.Draw({
-          source: task.source_inside,
+        task.draw_external = new ol.interaction.Draw({
+          source: task.source_external,
           type: 'LineString',
         });
 
         // When the first external line is completed, remove the drawInteraction
-        task.draw_outside.on('drawend', function(evt) {
-                task.outside = true;
+        task.draw_external.on('drawend', function(evt) {
+                task.external = true;
                 $("#btn-save").removeClass("disabled");
                 });
 
-        // When the first internal line is completed, remove the drawInteraction
-        task.draw_inside.on('drawend', function(evt) {
-                task.inside = true;
-                $("#btn-save").removeClass("disabled");
-                });
-
-        task.map.addInteraction(task.draw_outside);
+        task.map.addInteraction(task.draw_external);
 
         task.answer = {
                  'task_id': task.id,
-                 'outside': [],
-                 'inside': [],
+                 'external': [],
                  'img': task.info.url_b};
-        task.outside = false;
-        task.inside = false;
+        task.external = false;
         }
     else {
         deferred.resolve(task);
@@ -542,17 +491,9 @@ pybossa.presentTask(function(task, deferred) {
         $('.btn-type').off('click').on('click', function(evt) {
             var answer = $(evt.target).attr("value");
             if (typeof answer != 'undefined'){
-                if (answer == 'inside') {
-                    $("#outside").removeClass('active');
-                    $("#inside").addClass('active');
-                    task.map.removeInteraction(task.draw_outside);
-                    task.map.addInteraction(task.draw_inside);
-                }
-                else {
-                    $("#inside").removeClass('active');
-                    $("#outside").addClass('active');
-                    task.map.addInteraction(task.draw_outside);
-                    task.map.removeInteraction(task.draw_inside);
+                if (answer == 'external') {
+                    $("#external").addClass('active');
+                    task.map.addInteraction(task.draw_external);
                 }
             }
         });
@@ -564,54 +505,32 @@ pybossa.presentTask(function(task, deferred) {
                 if (answer == 'draw') {
                     $("#edit").removeClass("active");
                     $("#draw").addClass("active");
-                    if ($("#outside").hasClass("active")) {
-                        task.map.removeInteraction(task.modify_outside);
-                        task.map.removeInteraction(task.select_outside);
-                        task.map.addInteraction(task.draw_outside);
-                    }
-                    else {
-                        task.map.removeInteraction(task.modify_inside);
-                        task.map.removeInteraction(task.select_inside);
-                        task.map.addInteraction(task.draw_inside);
+                    if ($("#external").hasClass("active")) {
+                        task.map.removeInteraction(task.modify_external);
+                        task.map.removeInteraction(task.select_external);
+                        task.map.addInteraction(task.draw_external);
                     }
                 }
                 if (answer == 'edit') {
                     $("#draw").removeClass("active");
                     $("#edit").addClass("active");
-                    if ($("#outside").hasClass("active")) {
-                        task.map.removeInteraction(task.draw_outside);
-                        task.map.addInteraction(task.select_outside);
-                        task.map.addInteraction(task.modify_outside);
-                    }
-                    else {
-                        task.map.removeInteraction(task.draw_inside);
-                        task.map.addInteraction(task.select_inside);
-                        task.map.addInteraction(task.modify_inside);
+                    if ($("#external").hasClass("active")) {
+                        task.map.removeInteraction(task.draw_external);
+                        task.map.addInteraction(task.select_external);
+                        task.map.addInteraction(task.modify_external);
                     }
                 }
 
                 if (answer == 'delete') {
-                    if ($("#outside").hasClass("active")) {
+                    if ($("#external").hasClass("active")) {
                         $("#draw").removeClass("active");
                         $("#edit").removeClass("active");
                         $("#delete").addClass("active");
-                        var features = task.source_outside.getAllFeatures();
+                        var features = task.source_external.getAllFeatures();
                         for(i=0;i<features.length;i++) {
-                            task.source_outside.removeFeature(features[i]);
+                            task.source_external.removeFeature(features[i]);
                         }
-                        task.outside = false;
-                        $("#draw").addClass("active");
-                        $("#delete").removeClass("active");
-                    }
-                    else {
-                        $("#draw").removeClass("active");
-                        $("#edit").removeClass("active");
-                        $("#delete").addClass("active");
-                        var features = task.source_inside.getAllFeatures();
-                        for(i=0;i<features.length;i++) {
-                            task.source_inside.removeFeature(features[i]);
-                        }
-                        task.inside = false;
+                        task.external = false;
                         $("#draw").addClass("active");
                         $("#delete").removeClass("active");
                     }
@@ -628,8 +547,8 @@ pybossa.presentTask(function(task, deferred) {
                 //console.log(task.map.source.features);
                 console.log(task.source.features);
 
-                if (task.outside) {
-                    var features = task.source_outside.getAllFeatures();
+                if (task.external) {
+                    var features = task.source_external.getAllFeatures();
                     var lines = [];
                     for(i=0;i<features.length;i++) {
                         var g = features[i].getGeometry();
@@ -639,17 +558,7 @@ pybossa.presentTask(function(task, deferred) {
                         'task_id': task.id,
                         'LineString': lines,
                         'img': task.info.url_b};
-                    task.answer.outside = lines;
-
-                    if (task.inside) {
-                        var features = task.source_inside.getAllFeatures();
-                        var lines = [];
-                        for(i=0;i<features.length;i++) {
-                            var g = features[i].getGeometry();
-                            lines.push(g.getCoordinates());
-                        }
-                        task.answer.inside = lines;
-                    }
+                    task.answer.external = lines;
 
                     pybossa.saveTask(task.id, task.answer).done(function() {
                     	$("#success").fadeIn(500).fadeOut(5500);
