@@ -82,8 +82,8 @@ task.
 			</button>
 			<a class="btn btn-info btn-sm" id="imgLink" target="_blank" data-toggle="tooltip" data-placement="top" title="Opens in a new window" href="http://community.micropasts.org/category/crowdsourcing-support"><i class="glyphicon glyphicon-book"></i> Community Help</a>
 		</div>
-		<div id="step0">
-			<h1>Draw a scale-bar and enter its dimenions (NB in metres!):</h1>
+		<div id="step1">
+			<h1>Step 1 of 2: raw a scale and enter its dimensions (in metres):</h1>
 			<div class="btn-group">
 				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
 					Loading photo
@@ -101,12 +101,12 @@ task.
 				</button>
 			</div>
 			<div class="btn-group">
-				<button id="gotostep1" class="btn btn-success btn-answer" value='gotostep1'>
+				<button id="gotostep2" class="btn btn-success btn-answer" value='gotostep2'>
 					<i class="icon icon-white icon-save"></i> Next
 				</button>
 			</div>
 		</div>
-		<div id="step1">
+		<div id="step2" style="display:none;">
 			<h1>Now draw the external profile of the vessel:</h1>
 			<div class="btn-group">
 				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
@@ -518,7 +518,7 @@ deferred.resolve(task);
 pybossa.presentTask(function(task, deferred) {
 if ( !$.isEmptyObject(task) ) {
 loadUserProgress();
-$("#step0").show();
+$("#step1").show();
 $('#task-id').html(task.id);
 $("#map_" + task.id).show();
 
@@ -531,10 +531,10 @@ if (answer == 'external') {
 $("#external").addClass('active');
 task.map.addInteraction(task.draw_external);
 }
-if (answer == 'gotostep1') {
+if (answer == 'gotostep2') {
 $("#btn-save").show();
-$("#step0").toggle();
 $("#step1").toggle();
+$("#step2").toggle();
 }
 }
 });
