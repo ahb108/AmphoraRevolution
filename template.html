@@ -373,7 +373,7 @@ $("#delete").removeClass("disabled");
 $("#external").removeClass("disabled");
 $("#status").text("Photo loaded!");
 });
-img.attr('src', task.info.url_b).css('height', 460);
+img.attr('src', task.info.url_b).css('height', 100);
 
 //Log the url of image being masked.
 console.log(task.info.url_b);
@@ -484,7 +484,7 @@ html: '&copy; <a href="http://micropasts.org">MicroPasts</a>'
 })
 ],
 url: task.info.url_b,
-imageSize: [1000, 1000],
+imageSize: [100, 100],
 projection: task.pixelProjection,
 imageExtent: task.pixelProjection.getExtent()
 })
