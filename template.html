@@ -107,9 +107,6 @@ task.
 				<button id="gotostep2" class="btn btn-success btn-next" value='gotostep2'>
 					<i class="icon icon-white icon-save"></i> Next
 				</button>
-				<button id="btn-save" class="btn btn-success btn-answer" value='save'>
-					<i class="icon icon-white icon-save"></i> Submit All
-				</button>
 			</div>
 		</div>
 		<div id="step2" style="display:none;">
@@ -134,9 +131,6 @@ task.
 				</button>
 			</div>
 			<div class="btn-group">
-				<button id="gotostep2" class="btn btn-success btn-next" value='gotostep2'>
-					<i class="icon icon-white icon-save"></i> Next
-				</button>
 				<button id="btn-save" class="btn btn-success btn-answer" value='save'>
 					<i class="icon icon-white icon-save"></i> Submit All
 				</button>
@@ -267,7 +261,7 @@ task.
 			</div>
 			<div id="1" class="modal-body" style="display:none">
 				<p>
-					How to use the applilcation's photo-masking toolbar:
+					How to use the application's photo-masking toolbar:
 				</p>
 				<img src="http://micropasts.org/wp-content/uploads/2014/11/Photomasking_Toolbar.png" width="100%" alt="Photo-masking Toolbar" />
 				<p>
@@ -281,10 +275,7 @@ task.
 					<strong>Edit</strong>: This option is enabled once there is at least one complete line drawn. After clicking on 'Edit', choose the line you wish to edit by clicking once anywhere on it. It will turn blue, and become available for editing such that you will be able to re-position the blue nodes that give the line its shape.
 				</p>
 				<p>
-					<strong>Remove all lines</strong>: Use this option if you wish to start over. Clicking this button will remove all drawn lines.
-				</p>
-				<p>
-					<strong>Save the drawings</strong>: Click on this button when you are done digitising the object - it will save and submit your work.
+					<strong>Delete</strong>: Use this option if you wish to start over. Clicking this button will remove all drawn lines.
 				</p>
 				</p>
 			</div>
@@ -544,7 +535,6 @@ deferred.resolve(task);
 pybossa.presentTask(function(task, deferred) {
 if ( !$.isEmptyObject(task) ) {
 loadUserProgress();
-$("#btn-save").addClass("disabled");
 $("#step1").show();
 $('#task-id').html(task.id);
 $("#map_" + task.id).show();
