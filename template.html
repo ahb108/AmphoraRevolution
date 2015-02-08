@@ -96,6 +96,9 @@ task.
 				<button id="draw" type="button" class="btn btn-default btn-draw active" name="draw" value="draw">
 					Draw
 				</button>
+				<button id="edit" type="button" class="btn btn-default btn-draw" name="edit" value="edit">
+					Edit
+				</button>
 				<button id="delete" type="button" class="btn btn-default btn-draw" name="delete" value="delete">
 					Delete
 				</button>
@@ -103,6 +106,9 @@ task.
 			<div class="btn-group">
 				<button id="gotostep2" class="btn btn-success btn-next" value='gotostep2'>
 					<i class="icon icon-white icon-save"></i> Next
+				</button>
+				<button id="btn-save" class="btn btn-success btn-answer" value='save'>
+					<i class="icon icon-white icon-save"></i> Submit All
 				</button>
 			</div>
 		</div>
@@ -128,6 +134,9 @@ task.
 				</button>
 			</div>
 			<div class="btn-group">
+				<button id="gotostep2" class="btn btn-success btn-next" value='gotostep2'>
+					<i class="icon icon-white icon-save"></i> Next
+				</button>
 				<button id="btn-save" class="btn btn-success btn-answer" value='save'>
 					<i class="icon icon-white icon-save"></i> Submit All
 				</button>
@@ -518,6 +527,7 @@ deferred.resolve(task);
 pybossa.presentTask(function(task, deferred) {
 if ( !$.isEmptyObject(task) ) {
 loadUserProgress();
+$("#btn-save").addClass("disabled");
 $("#step1").show();
 $('#task-id').html(task.id);
 $("#map_" + task.id).show();
