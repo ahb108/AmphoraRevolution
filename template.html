@@ -490,6 +490,7 @@ imageExtent: task.pixelProjection.getExtent()
 })
 })
 ,
+task.scalebar,
 task.external,
 ],
 renderer: 'canvas',
@@ -516,13 +517,14 @@ type: 'LineString',
 // When the first external line is completed, remove the drawInteraction
 task.draw_external.on('drawend', function(evt) {
 task.external = true;
-$("#btn-save").removeClass("disabled");
 });
 
 task.map.addInteraction(task.draw_external);
 
 task.answer = {
 'task_id': task.id,
+'scalebar': [],
+'dimension': 0,
 'external': [],
 'img': task.info.url_b};
 task.external = false;
