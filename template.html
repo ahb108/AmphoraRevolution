@@ -638,6 +638,8 @@ if (answer == 'gotostep2') {
 $("#btn-save").show();
 $("#step1").toggle();
 $("#step2").toggle();
+task.map.removeInteraction(task.scalebar);
+task.map.addInteraction(task.draw_external);
 }
 
 }});
