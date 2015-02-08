@@ -587,14 +587,14 @@ $("#delete").removeClass("active");
 $('.btn-next').off('click').on('click', function(evt) {
 var answer = $(evt.target).attr("value");
 if (typeof answer != 'undefined'){
+	
 if (answer == 'gotostep2') {
 $("#btn-save").show();
 $("#step1").toggle();
 $("#step2").toggle();
 }
-}
-}
 
+}});
 
 $('.btn-answer').off('click').on('click', function(evt) {
 var answer = $(evt.target).attr("value");
