@@ -552,21 +552,21 @@ $("#step2").hide();
 $('#task-id').html(task.id);
 $("#map_" + task.id).show();
 
-// Code for drawing lines
-$('.btn-type').off('click').on('click', function(evt) {
-var answer = $(evt.target).attr("value");
-
-if (typeof answer != 'undefined'){
-if (answer == 'scalebar') {
-$("#scalebar").addClass('active');
-task.map.addInteraction(task.draw_scalebar);
-}
-if (answer == 'external') {
-$("#external").addClass('active');
-task.map.addInteraction(task.draw_external);
-}
-}
-});
+// // Code for drawing lines
+// $('.btn-type').off('click').on('click', function(evt) {
+// var answer = $(evt.target).attr("value");
+// 
+// if (typeof answer != 'undefined'){
+// if (answer == 'scalebar') {
+// $("#scalebar").addClass('active');
+// task.map.addInteraction(task.draw_scalebar);
+// }
+// if (answer == 'external') {
+// $("#external").addClass('active');
+// task.map.addInteraction(task.draw_external);
+// }
+// }
+// });
 
 // Code for editing/drawing lines
 $('.btn-draw').off('click').on('click', function(evt) {
