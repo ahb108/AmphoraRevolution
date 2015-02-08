@@ -387,7 +387,7 @@ task.info.image = img;
 task.pixelProjection = new ol.proj.Projection({
 code: 'pixel',
 units: 'pixels',
-extent: [0, 0, 5184, 3456]
+extent: [0, 0, 100, 100]
 });
 
 task.styleArray = [new ol.style.Style({
@@ -484,7 +484,7 @@ html: '&copy; <a href="http://micropasts.org">MicroPasts</a>'
 })
 ],
 url: task.info.url_b,
-imageSize: [5184, 3456],
+imageSize: [100, 100],
 projection: task.pixelProjection,
 imageExtent: task.pixelProjection.getExtent()
 })
