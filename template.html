@@ -621,10 +621,6 @@ for(i=0;i<features.length;i++) {
 var g = features[i].getGeometry();
 lines.push(g.getCoordinates());
 }
-task.answer = {
-'task_id': task.id,
-'LineString': lines,
-'img': task.info.url_b};
 task.answer.external = lines;
 
 pybossa.saveTask(task.id, task.answer).done(function() {
