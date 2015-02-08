@@ -509,18 +509,26 @@ div_map.css("display", "none");
 
 var typeSelect = document.getElementById('type');
 
-//task.draw; // global so we can remove it later
+task.draw_scalebar = new ol.interaction.Draw({
+source: task.source_scalebar,
+type: 'LineString',
+});
+
 task.draw_external = new ol.interaction.Draw({
 source: task.source_external,
 type: 'LineString',
 });
 
-// When the first external line is completed, remove the drawInteraction
+// When the first  line is completed, remove the drawInteraction
+task.draw_scalebar.on('drawend', function(evt) {
+task.scalebar = true;
+});
+
 task.draw_external.on('drawend', function(evt) {
 task.external = true;
 });
 
-task.map.addInteraction(task.draw_external);
+task.map.addInteraction(task.draw_scalebar);
 
 task.answer = {
 'task_id': task.id,
@@ -528,6 +536,7 @@ task.answer = {
 'dimension': 0,
 'external': [],
 'img': task.info.url_b};
+task.scalebar = false;
 task.external = false;
 }
 else {
@@ -548,6 +557,10 @@ $('.btn-type').off('click').on('click', function(evt) {
 var answer = $(evt.target).attr("value");
 
 if (typeof answer != 'undefined'){
+if (answer == 'scalebar') {
+$("#scalebar").addClass('active');
+task.map.addInteraction(task.draw_scalebar);
+}
 if (answer == 'external') {
 $("#external").addClass('active');
 task.map.addInteraction(task.draw_external);
@@ -562,6 +575,11 @@ if (typeof answer != 'undefined'){
 if (answer == 'draw') {
 $("#edit").removeClass("active");
 $("#draw").addClass("active");
+if ($("#scalebar").hasClass("active")) {
+task.map.removeInteraction(task.modify_scalebar);
+task.map.removeInteraction(task.select_scalebar);
+task.map.addInteraction(task.draw_scalebar);
+}
 if ($("#external").hasClass("active")) {
 task.map.removeInteraction(task.modify_external);
 task.map.removeInteraction(task.select_external);
@@ -571,6 +589,11 @@ task.map.addInteraction(task.draw_external);
 if (answer == 'edit') {
 $("#draw").removeClass("active");
 $("#edit").addClass("active");
+if ($("#scalebar").hasClass("active")) {
+task.map.removeInteraction(task.draw_scalebar);
+task.map.addInteraction(task.select_scalebar);
+task.map.addInteraction(task.modify_scalebar);
+}
 if ($("#external").hasClass("active")) {
 task.map.removeInteraction(task.draw_external);
 task.map.addInteraction(task.select_external);
@@ -579,6 +602,18 @@ task.map.addInteraction(task.modify_external);
 }
 
 if (answer == 'delete') {
+if ($("#scalebar").hasClass("active")) {
+$("#draw").removeClass("active");
+$("#edit").removeClass("active");
+$("#delete").addClass("active");
+var features = task.source_scalebar.getAllFeatures();
+for(i=0;i<features.length;i++) {
+task.source_scalebar.removeFeature(features[i]);
+}
+task.scalebar = false;
+$("#draw").addClass("active");
+$("#delete").removeClass("active");
+}
 if ($("#external").hasClass("active")) {
 $("#draw").removeClass("active");
 $("#edit").removeClass("active");
@@ -616,6 +651,15 @@ console.log(answer);
 //console.log(task.map.source.features);
 //console.log(task.source.features);
 
+if (task.scalebar) {
+var features = task.source_scalebar.getAllFeatures();
+var lines = [];
+for(i=0;i<features.length;i++) {
+var g = features[i].getGeometry();
+lines.push(g.getCoordinates());
+}
+task.answer.scalebar = lines;
+}
 if (task.external) {
 var features = task.source_external.getAllFeatures();
 var lines = [];
