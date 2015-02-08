@@ -116,7 +116,7 @@ task.
 				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
 					Photo loaded!
 				</button>
-				<button id="external" type="button" class="btn btn-default btn-type active" name="external" value="external">
+				<button id="external" type="button" class="btn btn-default btn-type disabled" name="external" value="external">
 					External
 				</button>
 			</div>
@@ -372,7 +372,7 @@ $("#draw").removeClass("disabled");
 $("#edit").removeClass("disabled");
 $("#delete").removeClass("disabled");
 $("#external").removeClass("disabled");
-$("#status").text("Photo loaded!");
+$("#status").text("Photo loaded");
 });
 img.attr('src', task.info.url_b).css('height', 100);
 
@@ -551,22 +551,6 @@ $("#step1").show();
 $("#step2").hide();
 $('#task-id').html(task.id);
 $("#map_" + task.id).show();
-
-// // Code for drawing lines
-// $('.btn-type').off('click').on('click', function(evt) {
-// var answer = $(evt.target).attr("value");
-// 
-// if (typeof answer != 'undefined'){
-// if (answer == 'scalebar') {
-// $("#scalebar").addClass('active');
-// task.map.addInteraction(task.draw_scalebar);
-// }
-// if (answer == 'external') {
-// $("#external").addClass('active');
-// task.map.addInteraction(task.draw_external);
-// }
-// }
-// });
 
 // Code for editing/drawing lines
 $('.btn-draw').off('click').on('click', function(evt) {
