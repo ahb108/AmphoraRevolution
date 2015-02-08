@@ -109,6 +109,7 @@ task.
 				</button>
 			</div>
 		</div>
+		
 		<div id="step2" style="display:none;">
 			<h1>Step 2. Draw the external profile of the vessel:</h1>
 			<div class="btn-group">
@@ -538,6 +539,7 @@ pybossa.presentTask(function(task, deferred) {
 if ( !$.isEmptyObject(task) ) {
 loadUserProgress();
 $("#step1").show();
+$("#step2").hide();
 $('#task-id').html(task.id);
 $("#map_" + task.id).show();
 
