@@ -108,7 +108,7 @@ task.
 					<i class="icon icon-white icon-save"></i> Next
 				</button>
 			</div>
-			<form id="dims" role="form">
+			<form id="dimension" role="form">
 				<div class="row">
 					<div class="form-group col-xs-2 col-lg-1">    
 						<label class="control-label" for="dimension">Scalebar Dimension</label>
@@ -649,7 +649,7 @@ console.log(answer);
 //console.log(task.source.features);
 
 if (task.scalebar) {
-var dims = $("#dims").serializeJSON();
+var dims = $("#dimension").serializeJSON();
 var features = task.source_scalebar.getAllFeatures();
 var lines = [];
 for(i=0;i<features.length;i++) {
