@@ -654,7 +654,7 @@ var g = features[i].getGeometry();
 lines.push(g.getCoordinates());
 }
 task.answer.scalebar = lines;
-var dimension = parseInt($("#dimension").val());
+var dimension = parseFloat($("#dimension").val());
 task.answer.dimension = dimension
 }
 if (task.external) {
