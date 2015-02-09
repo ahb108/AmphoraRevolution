@@ -649,7 +649,7 @@ console.log(answer);
 //console.log(task.source.features);
 
 if (task.scalebar) {
-var dims = $("#dimension").serializeJSON();
+var dims = $("#dimension");
 var features = task.source_scalebar.getAllFeatures();
 var lines = [];
 for(i=0;i<features.length;i++) {
