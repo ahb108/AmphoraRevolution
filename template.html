@@ -111,14 +111,6 @@ task.
 					<i class="icon icon-white icon-save"></i> Next
 				</button>
 			</div>
-			<!-- <form id="dimension" role="form">
-				<div class="row">
-					<div class="form-group col-xs-2 col-lg-1">    
-						<label class="control-label" for="dimension">Scalebar Dimension</label>
-						<textarea class="form-control" rows="1" name="dimension" placeholder="(in metres)"></textarea>
-					</div>	
-				</div>	
-			</form> -->
 		</div>
 
 		<div id="step2" style="display:none;">
@@ -143,11 +135,40 @@ task.
 				</button>
 			</div>
 			<div class="btn-group">
+				<button id="gotostep3" class="btn btn-success btn-next" value='gotostep2'>
+					<i class="icon icon-white icon-save"></i> Next
+				</button>
+			</div>
+		</div>
+		
+		<div id="step3" style="display:none;">
+			<h1>Step 3. Draw the internal profile of the vessel:</h1>
+			<div class="btn-group">
+				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
+					Photo loaded
+				</button>
+				<button id="internal" type="button" class="btn btn-default btn-type disabled" name="internal" value="internal">
+					Internal
+				</button>
+			</div>
+			<div class="btn-group">
+				<button id="draw" type="button" class="btn btn-default btn-draw active" name="draw" value="draw">
+					Draw
+				</button>
+				<button id="edit" type="button" class="btn btn-default btn-draw" name="edit" value="edit">
+					Edit
+				</button>
+				<button id="delete" type="button" class="btn btn-default btn-draw" name="delete" value="delete">
+					Delete
+				</button>
+			</div>
+			<div class="btn-group">
 				<button id="btn-save" class="btn btn-success btn-answer" value='save'>
 					<i class="icon icon-white icon-save"></i> Submit All
 				</button>
 			</div>
 		</div>
+		
 	</div>
 </div>
 
@@ -420,6 +441,7 @@ color: '#ffcc33'
 
 task.source_scalebar = new ol.source.Vector();
 task.source_external = new ol.source.Vector();
+task.source_internal = new ol.source.Vector();
 
 task.scalebar = new ol.layer.Vector({
 source: task.source_scalebar,
@@ -459,6 +481,25 @@ color: '#ffcc33'
 })
 });
 
+task.internal = new ol.layer.Vector({
+source: task.source_internal,
+style: new ol.style.Style({
+fill: new ol.style.Fill({
+color: 'rgba(255, 255, 255, 0.2)'
+}),
+stroke: new ol.style.Stroke({
+color: '#ffcc33',
+width: 2
+}),
+image: new ol.style.Circle({
+radius: 7,
+fill: new ol.style.Fill({
+color: '#ffcc33'
+})
+})
+})
+});
+
 task.overlay = new ol.FeatureOverlay({
 style: new ol.style.Style({
 fill: new ol.style.Fill({
@@ -477,12 +518,28 @@ color: [0, 153, 255, 1]
 })
 });
 
-// Modifiers for external profile (external)
+// Modifiers for scalebar
+task.modify_scalebar = new ol.interaction.Modify({
+layer: task.scalebar,
+featureOverlay: task.overlay });
+task.select_scalebar = new ol.interaction.Select({
+layer: task.scalebar,
+featureOverlay: task.overlay });
+
+// Modifiers for external profile
 task.modify_external = new ol.interaction.Modify({
 layer: task.external,
 featureOverlay: task.overlay });
 task.select_external = new ol.interaction.Select({
 layer: task.external,
+featureOverlay: task.overlay });
+
+// Modifiers for internal profile
+task.modify_internal = new ol.interaction.Modify({
+layer: task.internal,
+featureOverlay: task.overlay });
+task.select_internal = new ol.interaction.Select({
+layer: task.internal,
 featureOverlay: task.overlay });
 
 task.map = new ol.Map({
@@ -504,6 +561,7 @@ imageExtent: task.pixelProjection.getExtent()
 ,
 task.scalebar,
 task.external,
+task.internal,
 ],
 renderer: 'canvas',
 target: 'map_' + task.id,
@@ -530,6 +588,11 @@ source: task.source_external,
 type: 'LineString',
 });
 
+task.draw_internal = new ol.interaction.Draw({
+source: task.source_internal,
+type: 'LineString',
+});
+
 // When the first  line is completed, remove the drawInteraction
 task.draw_scalebar.on('drawend', function(evt) {
 task.scalebar = true;
@@ -539,6 +602,10 @@ task.draw_external.on('drawend', function(evt) {
 task.external = true;
 });
 
+task.draw_internal.on('drawend', function(evt) {
+task.internal = true;
+});
+
 task.map.addInteraction(task.draw_scalebar);
 
 task.answer = {
@@ -546,9 +613,11 @@ task.answer = {
 'scalebar': [],
 'dimension': 0,
 'external': [],
+'internal': [],
 'img': task.info.url_b};
 task.scalebar = false;
 task.external = false;
+task.internal = false;
 }
 else {
 deferred.resolve(task);
@@ -560,6 +629,7 @@ if ( !$.isEmptyObject(task) ) {
 loadUserProgress();
 $("#step1").show();
 $("#step2").hide();
+$("#step3").hide();
 $("#dimension").val("");
 $('#task-id').html(task.id);
 $("#map_" + task.id).show();
@@ -581,6 +651,11 @@ task.map.removeInteraction(task.modify_external);
 task.map.removeInteraction(task.select_external);
 task.map.addInteraction(task.draw_external);
 }
+if ($("#internal").hasClass("active")) {
+task.map.removeInteraction(task.modify_internal);
+task.map.removeInteraction(task.select_internal);
+task.map.addInteraction(task.draw_internal);
+}
 }
 if (answer == 'edit') {
 $("#draw").removeClass("active");
@@ -594,6 +669,11 @@ if ($("#external").hasClass("active")) {
 task.map.removeInteraction(task.draw_external);
 task.map.addInteraction(task.select_external);
 task.map.addInteraction(task.modify_external);
+}
+if ($("#internal").hasClass("active")) {
+task.map.removeInteraction(task.draw_internal);
+task.map.addInteraction(task.select_internal);
+task.map.addInteraction(task.modify_internal);
 }
 }
 
@@ -622,6 +702,18 @@ task.external = false;
 $("#draw").addClass("active");
 $("#delete").removeClass("active");
 }
+if ($("#internal").hasClass("active")) {
+$("#draw").removeClass("active");
+$("#edit").removeClass("active");
+$("#delete").addClass("active");
+var features = task.source_internal.getAllFeatures();
+for(i=0;i<features.length;i++) {
+task.source_internal.removeFeature(features[i]);
+}
+task.internal = false;
+$("#draw").addClass("active");
+$("#delete").removeClass("active");
+}
 }
 
 }});
@@ -636,6 +728,14 @@ $("#step1").toggle();
 $("#step2").toggle();
 task.map.removeInteraction(task.scalebar);
 task.map.addInteraction(task.draw_external);
+}
+
+if (answer == 'gotostep3') {
+$("#btn-save").show();
+$("#step2").toggle();
+$("#step3").toggle();
+task.map.removeInteraction(task.draw_external);
+task.map.addInteraction(task.draw_internal);
 }
 
 }});
@@ -668,6 +768,15 @@ var g = features[i].getGeometry();
 lines.push(g.getCoordinates());
 }
 task.answer.external = lines;
+}
+if (task.internal) {
+var features = task.source_internal.getAllFeatures();
+var lines = [];
+for(i=0;i<features.length;i++) {
+var g = features[i].getGeometry();
+lines.push(g.getCoordinates());
+}
+task.answer.internal = lines;
 
 pybossa.saveTask(task.id, task.answer).done(function() {
 $("#success").fadeIn(500).fadeOut(5500);
