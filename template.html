@@ -83,7 +83,7 @@ task.
 			<a class="btn btn-info btn-sm" id="imgLink" target="_blank" data-toggle="tooltip" data-placement="top" title="Opens in a new window" href="http://community.micropasts.org/category/crowdsourcing-support"><i class="glyphicon glyphicon-book"></i> Community Help</a>
 		</div>
 		<div id="step1">
-			<h1>Step 1. Draw the scalebar and enter its dimensions (in metres):</h1>
+			<h1>Step 1. Draw the scalebar and enter its length (in metres):</h1>
 			<div class="btn-group">
 				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
 					Loading photo
@@ -108,8 +108,11 @@ task.
 					<i class="icon icon-white icon-save"></i> Next
 				</button>
 			</div>
-			<input id="dimension">
+			<div>
+			<span class="label label-info">Scale length:
+			<input id="dimension" size="5">
 			</input>
+			</div>
 			<!-- <form id="dimension" role="form">
 				<div class="row">
 					<div class="form-group col-xs-2 col-lg-1">    
