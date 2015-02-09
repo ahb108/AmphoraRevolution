@@ -557,9 +557,7 @@ if ( !$.isEmptyObject(task) ) {
 loadUserProgress();
 $("#step1").show();
 $("#step2").hide();
-$(':input','#dims')
-.not(':button, :submit, :reset, :hidden, :radio')
-.val('')
+$("#dimension").val("");
 $('#task-id').html(task.id);
 $("#map_" + task.id).show();
 
@@ -656,7 +654,8 @@ var g = features[i].getGeometry();
 lines.push(g.getCoordinates());
 }
 task.answer.scalebar = lines;
-task.answer.dimension = $("#dimension");
+var dimension = parseInt($("#dimension").val());
+task.answer.dimension = dimension
 }
 if (task.external) {
 var features = task.source_external.getAllFeatures();
