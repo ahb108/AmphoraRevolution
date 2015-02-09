@@ -649,7 +649,6 @@ console.log(answer);
 //console.log(task.source.features);
 
 if (task.scalebar) {
-var dims = $("#dimension");
 var features = task.source_scalebar.getAllFeatures();
 var lines = [];
 for(i=0;i<features.length;i++) {
@@ -657,7 +656,7 @@ var g = features[i].getGeometry();
 lines.push(g.getCoordinates());
 }
 task.answer.scalebar = lines;
-task.answer.dimension = dims 
+task.answer.dimension = $("#dimension");
 }
 if (task.external) {
 var features = task.source_external.getAllFeatures();
