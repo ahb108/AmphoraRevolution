@@ -716,11 +716,15 @@ if (typeof answer != 'undefined'){
 if (answer == 'gotostep2') {
 $("#step1").toggle();
 $("#step2").toggle();
+$("#scalebar").removeClass("active");
+$("#external").addClass("active");
 task.map.removeInteraction(task.draw_scalebar);
 task.map.addInteraction(task.draw_external);
 }
 
 if (answer == 'gotostep3') {
+$("#external").removeClass("active");
+$("#internal").addClass("active");
 $("#btn-save").show();
 $("#step2").toggle();
 $("#step3").toggle();
