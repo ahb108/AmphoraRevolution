@@ -88,7 +88,7 @@ task.
 				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
 					Loading photo
 				</button>
-				<button id="scalebar" type="button" class="btn btn-default btn-type" name="scalebar" value="scalebar">
+				<button id="scalebar" type="button" class="btn btn-default btn-type disabled" name="scalebar" value="scalebar">
 					Scalebar
 				</button>
 			</div>
@@ -119,7 +119,7 @@ task.
 				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
 					Photo loaded
 				</button>
-				<button id="external" type="button" class="btn btn-default btn-type active" name="external" value="external">
+				<button id="external" type="button" class="btn btn-default btn-type disabled" name="external" value="external">
 					External
 				</button>
 			</div>
@@ -147,7 +147,7 @@ task.
 				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
 					Photo loaded
 				</button>
-				<button id="internal" type="button" class="btn btn-default btn-type active" name="internal" value="internal">
+				<button id="internal" type="button" class="btn btn-default btn-type disabled" name="internal" value="internal">
 					Internal
 				</button>
 			</div>
@@ -394,7 +394,9 @@ div_map.css("width", "100%");
 $("#draw").addClass("disabled");
 $("#edit").addClass("disabled");
 $("#delete").addClass("disabled");
+$("#scalebar").addClass("disabled");
 $("#external").addClass("disabled");
+$("#internal").addClass("disabled");
 $("#map").append(div_map);
 div_map.attr("id", "map_" + task.id);
 img.load(function() {
@@ -403,7 +405,9 @@ deferred.resolve(task);
 $("#draw").removeClass("disabled");
 $("#edit").removeClass("disabled");
 $("#delete").removeClass("disabled");
+$("#scalebar").removeClass("disabled");
 $("#external").removeClass("disabled");
+$("#internal").removeClass("disabled");
 $("#status").text("Photo loaded");
 });
 img.attr('src', task.info.url_b).css('height', 100);
