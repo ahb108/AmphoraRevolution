@@ -545,7 +545,6 @@ layer: task.internal,
 featureOverlay: task.overlay });
 
 task.map = new ol.Map({
-//interactions: ol.interaction.defaults().extend([task.select_external, task.modify_external]),
 layers: [
 new ol.layer.Image({
 source: new ol.source.ImageStatic({
@@ -636,7 +635,7 @@ $("#dimension").val("");
 $('#task-id').html(task.id);
 $("#map_" + task.id).show();
 
-// Code for editing/drawing lines
+// Code for drawing lines
 $('.btn-draw').off('click').on('click', function(evt) {
 var answer = $(evt.target).attr("value");
 if (typeof answer != 'undefined'){
@@ -717,7 +716,7 @@ if (typeof answer != 'undefined'){
 if (answer == 'gotostep2') {
 $("#step1").toggle();
 $("#step2").toggle();
-task.map.removeInteraction(task.scalebar);
+task.map.removeInteraction(task.draw_scalebar);
 task.map.addInteraction(task.draw_external);
 }
 
