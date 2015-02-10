@@ -579,16 +579,16 @@ div_map.css("display", "none");
 
 var typeSelect = document.getElementById('type');
 
+
+// Global task.draw so it can be removed later
 task.draw_scalebar = new ol.interaction.Draw({
 source: task.source_scalebar,
 type: 'LineString',
 });
-
 task.draw_external = new ol.interaction.Draw({
 source: task.source_external,
 type: 'LineString',
 });
-
 task.draw_internal = new ol.interaction.Draw({
 source: task.source_internal,
 type: 'LineString',
@@ -598,11 +598,9 @@ type: 'LineString',
 task.draw_scalebar.on('drawend', function(evt) {
 task.scalebar = true;
 });
-
 task.draw_external.on('drawend', function(evt) {
 task.external = true;
 });
-
 task.draw_internal.on('drawend', function(evt) {
 task.internal = true;
 });
@@ -679,10 +677,10 @@ task.map.addInteraction(task.modify_internal);
 }
 
 if (answer == 'delete') {
+if ($("#scalebar").hasClass("active")) {
 $("#draw").removeClass("active");
 $("#edit").removeClass("active");
 $("#delete").addClass("active");
-if ($("#scalebar").hasClass("active")) {
 var features = task.source_scalebar.getAllFeatures();
 for(i=0;i<features.length;i++) {
 task.source_scalebar.removeFeature(features[i]);
@@ -692,6 +690,9 @@ $("#draw").addClass("active");
 $("#delete").removeClass("active");
 }
 if ($("#external").hasClass("active")) {
+$("#draw").removeClass("active");
+$("#edit").removeClass("active");
+$("#delete").addClass("active");
 var features = task.source_external.getAllFeatures();
 for(i=0;i<features.length;i++) {
 task.source_external.removeFeature(features[i]);
@@ -701,6 +702,9 @@ $("#draw").addClass("active");
 $("#delete").removeClass("active");
 }
 if ($("#internal").hasClass("active")) {
+$("#draw").removeClass("active");
+$("#edit").removeClass("active");
+$("#delete").addClass("active");
 var features = task.source_internal.getAllFeatures();
 for(i=0;i<features.length;i++) {
 task.source_internal.removeFeature(features[i]);
