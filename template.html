@@ -688,6 +688,8 @@ for(i=0;i<features.length;i++) {
 task.source_scalebar.removeFeature(features[i]);
 }
 task.scalebar = false;
+$("#draw").addClass("active");
+$("#delete").removeClass("active");
 }
 if ($("#external").hasClass("active")) {
 var features = task.source_external.getAllFeatures();
@@ -695,6 +697,8 @@ for(i=0;i<features.length;i++) {
 task.source_external.removeFeature(features[i]);
 }
 task.external = false;
+$("#draw").addClass("active");
+$("#delete").removeClass("active");
 }
 if ($("#internal").hasClass("active")) {
 var features = task.source_internal.getAllFeatures();
@@ -702,9 +706,9 @@ for(i=0;i<features.length;i++) {
 task.source_internal.removeFeature(features[i]);
 }
 task.internal = false;
-}
-$("#delete").removeClass("active");
 $("#draw").addClass("active");
+$("#delete").removeClass("active");
+}
 }
 
 }});
