@@ -104,7 +104,9 @@ task.
 				</button>
 			</div>
 			<div style="display:inline">
-			Scale length: <input id="dimension" size="5" name="Scale length: "></input>
+				Scale length:
+				<input id="dimension" size="5" name="Scale length: ">
+				</input>
 			</div>
 			<div class="btn-group">
 				<button id="gotostep2" class="btn btn-success btn-next" value='gotostep2'>
@@ -140,7 +142,7 @@ task.
 				</button>
 			</div>
 		</div>
-		
+
 		<div id="step3" style="display:none;">
 			<h1>Step 3. Draw the internal profile of the vessel:</h1>
 			<div class="btn-group">
@@ -168,7 +170,7 @@ task.
 				</button>
 			</div>
 		</div>
-		
+
 	</div>
 </div>
 
@@ -579,7 +581,6 @@ div_map.css("display", "none");
 
 var typeSelect = document.getElementById('type');
 
-
 // Global task.draw so it can be removed later
 task.draw_scalebar = new ol.interaction.Draw({
 source: task.source_scalebar,
@@ -644,39 +645,34 @@ if ($("#scalebar").hasClass("active")) {
 task.map.removeInteraction(task.modify_scalebar);
 task.map.removeInteraction(task.select_scalebar);
 task.map.addInteraction(task.draw_scalebar);
-}
-if ($("#external").hasClass("active")) {
+} else if ($("#external").hasClass("active")) {
 task.map.removeInteraction(task.modify_external);
 task.map.removeInteraction(task.select_external);
 task.map.addInteraction(task.draw_external);
-}
-if ($("#internal").hasClass("active")) {
+} else if ($("#internal").hasClass("active")) {
 task.map.removeInteraction(task.modify_internal);
 task.map.removeInteraction(task.select_internal);
 task.map.addInteraction(task.draw_internal);
 }
-}
-if (answer == 'edit') {
+
+} else if (answer == 'edit') {
 $("#draw").removeClass("active");
 $("#edit").addClass("active");
 if ($("#scalebar").hasClass("active")) {
 task.map.removeInteraction(task.draw_scalebar);
 task.map.addInteraction(task.select_scalebar);
 task.map.addInteraction(task.modify_scalebar);
-}
-if ($("#external").hasClass("active")) {
+} else if ($("#external").hasClass("active")) {
 task.map.removeInteraction(task.draw_external);
 task.map.addInteraction(task.select_external);
 task.map.addInteraction(task.modify_external);
-}
-if ($("#internal").hasClass("active")) {
+} else if ($("#internal").hasClass("active")) {
 task.map.removeInteraction(task.draw_internal);
 task.map.addInteraction(task.select_internal);
 task.map.addInteraction(task.modify_internal);
 }
-}
 
-if (answer == 'delete') {
+} else if (answer == 'delete') {
 if ($("#scalebar").hasClass("active")) {
 $("#draw").removeClass("active");
 $("#edit").removeClass("active");
@@ -688,8 +684,7 @@ task.source_scalebar.removeFeature(features[i]);
 task.scalebar = false;
 $("#draw").addClass("active");
 $("#delete").removeClass("active");
-}
-if ($("#external").hasClass("active")) {
+} else if ($("#external").hasClass("active")) {
 $("#draw").removeClass("active");
 $("#edit").removeClass("active");
 $("#delete").addClass("active");
@@ -700,8 +695,7 @@ task.source_external.removeFeature(features[i]);
 task.external = false;
 $("#draw").addClass("active");
 $("#delete").removeClass("active");
-}
-if ($("#internal").hasClass("active")) {
+} else if ($("#internal").hasClass("active")) {
 $("#draw").removeClass("active");
 $("#edit").removeClass("active");
 $("#delete").addClass("active");
