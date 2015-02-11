@@ -1105,7 +1105,8 @@ lines.push(g.getCoordinates());
 task.answer.scalebar = lines;
 var dimension = parseFloat($("#dimension").val());
 task.answer.dimension = dimension
-} else if (task.external) {
+} 
+if (task.external) {
 var features = task.source_external.getAllFeatures();
 var lines = [];
 for(i=0;i<features.length;i++) {
@@ -1113,7 +1114,8 @@ var g = features[i].getGeometry();
 lines.push(g.getCoordinates());
 }
 task.answer.external = lines;
-} else if (task.internal) {
+} 
+if (task.internal) {
 var features = task.source_internal.getAllFeatures();
 var lines = [];
 for(i=0;i<features.length;i++) {
@@ -1121,7 +1123,8 @@ var g = features[i].getGeometry();
 lines.push(g.getCoordinates());
 }
 task.answer.internal = lines;
-} else if (task.midline) {
+}
+if (task.midline) {
 var features = task.source_midline.getAllFeatures();
 var lines = [];
 for(i=0;i<features.length;i++) {
@@ -1129,7 +1132,8 @@ var g = features[i].getGeometry();
 lines.push(g.getCoordinates());
 }
 task.answer.midline = lines;
-} else if (task.neckjoin) {
+}
+if (task.neckjoin) {
 var features = task.source_neckjoin.getAllFeatures();
 var lines = [];
 for(i=0;i<features.length;i++) {
@@ -1137,7 +1141,8 @@ var g = features[i].getGeometry();
 lines.push(g.getCoordinates());
 }
 task.answer.neckjoin = lines;
-} else if (task.handle) {
+} 
+if (task.handle) {
 var features = task.source_handle.getAllFeatures();
 var lines = [];
 for(i=0;i<features.length;i++) {
@@ -1145,7 +1150,8 @@ var g = features[i].getGeometry();
 lines.push(g.getCoordinates());
 }
 task.answer.handle = lines;
-} else {
+} 
+if (task.section) {
 var features = task.source_section.getAllFeatures();
 var polygons = [];
 for(i=0;i<features.length;i++) {
