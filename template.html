@@ -902,7 +902,9 @@ if ( !$.isEmptyObject(task) ) {
 loadUserProgress();
 $("#step1").show();
 $("#dimension").val("");
-$("#comments").val("");
+$(':input','#comments')
+           .not(':button, :submit, :reset, :hidden, :radio')
+           .val('');
 $('#task-id').html(task.id);
 $("#map_" + task.id).show();
 
