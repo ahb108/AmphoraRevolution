@@ -1163,7 +1163,7 @@ polygons.push(g.getCoordinates());
 }
 task.answer.section = polygons;
 }
-task.answer.comments = $('#comments :input');
+task.answer.comments = $('#comments :input').val();
 
 pybossa.saveTask(task.id, task.answer).done(function() {
 $("#success").fadeIn(500).fadeOut(5500);
