@@ -571,6 +571,10 @@ color: '#ffcc33'
 task.source_scalebar = new ol.source.Vector();
 task.source_external = new ol.source.Vector();
 task.source_internal = new ol.source.Vector();
+task.source_midline = new ol.source.Vector();
+task.source_neckjoin = new ol.source.Vector();
+task.source_handle = new ol.source.Vector();
+task.source_section = new ol.source.Vector();
 
 task.scalebar = new ol.layer.Vector({
 source: task.source_scalebar,
@@ -629,6 +633,82 @@ color: '#FF00FF'
 })
 });
 
+task.midline = new ol.layer.Vector({
+source: task.source_midline,
+style: new ol.style.Style({
+fill: new ol.style.Fill({
+color: 'rgba(255, 255, 255, 0.2)'
+}),
+stroke: new ol.style.Stroke({
+color: '#FF7F50',
+width: 2
+}),
+image: new ol.style.Circle({
+radius: 7,
+fill: new ol.style.Fill({
+color: '#FF7F50'
+})
+})
+})
+});
+
+task.neckjoin = new ol.layer.Vector({
+source: task.source_neckjoin,
+style: new ol.style.Style({
+fill: new ol.style.Fill({
+color: 'rgba(255, 255, 255, 0.2)'
+}),
+stroke: new ol.style.Stroke({
+color: '#B22222',
+width: 2
+}),
+image: new ol.style.Circle({
+radius: 7,
+fill: new ol.style.Fill({
+color: '#B22222'
+})
+})
+})
+});
+
+task.handle = new ol.layer.Vector({
+source: task.source_handle,
+style: new ol.style.Style({
+fill: new ol.style.Fill({
+color: 'rgba(255, 255, 255, 0.2)'
+}),
+stroke: new ol.style.Stroke({
+color: '#800080',
+width: 2
+}),
+image: new ol.style.Circle({
+radius: 7,
+fill: new ol.style.Fill({
+color: '#800080'
+})
+})
+})
+});
+
+task.section = new ol.layer.Vector({
+source: task.source_section,
+style: new ol.style.Style({
+fill: new ol.style.Fill({
+color: 'rgba(255, 255, 255, 0.2)'
+}),
+stroke: new ol.style.Stroke({
+color: '#800000',
+width: 2
+}),
+image: new ol.style.Circle({
+radius: 7,
+fill: new ol.style.Fill({
+color: '#800000'
+})
+})
+})
+});
+
 task.overlay = new ol.FeatureOverlay({
 style: new ol.style.Style({
 fill: new ol.style.Fill({
@@ -668,7 +748,36 @@ featureOverlay: task.overlay });
 task.select_internal = new ol.interaction.Select({
 layer: task.internal,
 featureOverlay: task.overlay });
+// Modifiers for midline
+task.modify_midline = new ol.interaction.Modify({
+layer: task.midline,
+featureOverlay: task.overlay });
+task.select_midline = new ol.interaction.Select({
+layer: task.midline,
+featureOverlay: task.overlay });
+// Modifiers for neckjoin
+task.modify_neckjoin = new ol.interaction.Modify({
+layer: task.neckjoin,
+featureOverlay: task.overlay });
+task.select_neckjoin = new ol.interaction.Select({
+layer: task.neckjoin,
+featureOverlay: task.overlay });
+// Modifiers for handle profile
+task.modify_handle = new ol.interaction.Modify({
+layer: task.handle,
+featureOverlay: task.overlay });
+task.select_handle = new ol.interaction.Select({
+layer: task.handle,
+featureOverlay: task.overlay });
+// Modifiers for handle section
+task.modify_section = new ol.interaction.Modify({
+layer: task.section,
+featureOverlay: task.overlay });
+task.select_section = new ol.interaction.Select({
+layer: task.section,
+featureOverlay: task.overlay });
 
+// Set up map
 task.map = new ol.Map({
 layers: [
 new ol.layer.Image({
@@ -688,6 +797,10 @@ imageExtent: task.pixelProjection.getExtent()
 task.scalebar,
 task.external,
 task.internal,
+task.midline,
+task.neckjoin,
+task.handle,
+task.section,
 ],
 renderer: 'canvas',
 target: 'map_' + task.id,
@@ -717,6 +830,22 @@ task.draw_internal = new ol.interaction.Draw({
 source: task.source_internal,
 type: 'LineString',
 });
+task.draw_midline = new ol.interaction.Draw({
+source: task.source_midline,
+type: 'LineString',
+});
+task.draw_neckjoin = new ol.interaction.Draw({
+source: task.source_neckjoin,
+type: 'LineString',
+});
+task.draw_handle = new ol.interaction.Draw({
+source: task.source_handle,
+type: 'LineString',
+});
+task.draw_section = new ol.interaction.Draw({
+source: task.source_section,
+type: 'Polygon',
+});
 
 // When the first  line is completed, remove the drawInteraction
 task.draw_scalebar.on('drawend', function(evt) {
@@ -728,6 +857,18 @@ task.external = true;
 task.draw_internal.on('drawend', function(evt) {
 task.internal = true;
 });
+task.draw_midline.on('drawend', function(evt) {
+task.midline = true;
+});
+task.draw_neckjoin.on('drawend', function(evt) {
+task.neckjoin = true;
+});
+task.draw_handle.on('drawend', function(evt) {
+task.handle = true;
+});
+task.draw_section.on('drawend', function(evt) {
+task.section = true;
+});
 
 task.map.addInteraction(task.draw_scalebar);
 
@@ -737,10 +878,18 @@ task.answer = {
 'dimension': 0,
 'external': [],
 'internal': [],
+'midline': [],
+'neckjoin': [],
+'handle': [],
+'section': [],
 'img': task.info.url_b};
 task.scalebar = false;
 task.external = false;
 task.internal = false;
+task.midline = false;
+task.neckjoin = false;
+task.handle = false;
+task.section = false;
 }
 else {
 deferred.resolve(task);
@@ -751,9 +900,8 @@ pybossa.presentTask(function(task, deferred) {
 if ( !$.isEmptyObject(task) ) {
 loadUserProgress();
 $("#step1").show();
-$("#step2").hide();
-$("#step3").hide();
 $("#dimension").val("");
+$("#comments").val("");
 $('#task-id').html(task.id);
 $("#map_" + task.id).show();
 
@@ -773,10 +921,26 @@ task.map.addInteraction(task.draw_scalebar);
 task.map.removeInteraction(task.modify_external);
 task.map.removeInteraction(task.select_external);
 task.map.addInteraction(task.draw_external);
-} else {
+} else if ($("#internal").hasClass("active")) {
 task.map.removeInteraction(task.modify_internal);
 task.map.removeInteraction(task.select_internal);
 task.map.addInteraction(task.draw_internal);
+} else if ($("#midline").hasClass("active")) {
+task.map.removeInteraction(task.modify_midline);
+task.map.removeInteraction(task.select_midline);
+task.map.addInteraction(task.draw_midline);
+} else if ($("#neckjoin").hasClass("active")) {
+task.map.removeInteraction(task.modify_neckjoin);
+task.map.removeInteraction(task.select_neckjoin);
+task.map.addInteraction(task.draw_neckjoin);
+} else if ($("#handle").hasClass("active")) {
+task.map.removeInteraction(task.modify_handle);
+task.map.removeInteraction(task.select_handle);
+task.map.addInteraction(task.draw_handle);
+} else {
+task.map.removeInteraction(task.modify_section);
+task.map.removeInteraction(task.select_section);
+task.map.addInteraction(task.draw_section);
 }
 
 } else if (answer == 'edit') {
@@ -791,10 +955,26 @@ task.map.addInteraction(task.modify_scalebar);
 task.map.removeInteraction(task.draw_external);
 task.map.addInteraction(task.select_external);
 task.map.addInteraction(task.modify_external);
-} else {
+} else if ($("#internal").hasClass("active")) {
 task.map.removeInteraction(task.draw_internal);
 task.map.addInteraction(task.select_internal);
 task.map.addInteraction(task.modify_internal);
+} else if ($("#midline").hasClass("active")) {
+task.map.removeInteraction(task.draw_midline);
+task.map.addInteraction(task.select_midline);
+task.map.addInteraction(task.modify_midline);
+} else if ($("#neckjoin").hasClass("active")) {
+task.map.removeInteraction(task.draw_neckjoin);
+task.map.addInteraction(task.select_neckjoin);
+task.map.addInteraction(task.modify_neckjoin);
+} else if ($("#handle").hasClass("active")) {
+task.map.removeInteraction(task.draw_handle);
+task.map.addInteraction(task.select_handle);
+task.map.addInteraction(task.modify_handle);
+} else {
+task.map.removeInteraction(task.draw_section);
+task.map.addInteraction(task.select_section);
+task.map.addInteraction(task.modify_section);
 }
 
 } else if (answer == 'delete') {
@@ -813,12 +993,36 @@ for(i=0;i<features.length;i++) {
 task.source_external.removeFeature(features[i]);
 }
 task.external = false;
-} else {
+} else if ($("#internal").hasClass("active")) {
 var features = task.source_internal.getAllFeatures();
 for(i=0;i<features.length;i++) {
 task.source_internal.removeFeature(features[i]);
 }
 task.internal = false;
+} else if ($("#midline").hasClass("active")) {
+var features = task.source_midline.getAllFeatures();
+for(i=0;i<features.length;i++) {
+task.source_midline.removeFeature(features[i]);
+}
+task.midline = false;
+} else if ($("#neckjoin").hasClass("active")) {
+var features = task.source_neckjoin.getAllFeatures();
+for(i=0;i<features.length;i++) {
+task.source_neckjoin.removeFeature(features[i]);
+}
+task.neckjoin = false;
+} else if ($("#handle").hasClass("active")) {
+var features = task.source_handle.getAllFeatures();
+for(i=0;i<features.length;i++) {
+task.source_handle.removeFeature(features[i]);
+}
+task.handle = false;
+} else {
+var features = task.source_section.getAllFeatures();
+for(i=0;i<features.length;i++) {
+task.source_section.removeFeature(features[i]);
+}
+task.section = false;
 }
 $("#draw").addClass("active");
 $("#delete").removeClass("active");
@@ -849,36 +1053,35 @@ $("#internal").removeClass("active");
 $("#midline").addClass("active");
 $("#step3").toggle();
 $("#step4").toggle();
-task.map.removeInteraction(task.draw_external);
-task.map.addInteraction(task.draw_internal);
+task.map.removeInteraction(task.draw_internal);
+task.map.addInteraction(task.draw_midline);
 } else if (answer == 'gotostep5') {
 $("#midline").removeClass("active");
 $("#neckjoin").addClass("active");
 $("#step4").toggle();
 $("#step5").toggle();
-task.map.removeInteraction(task.draw_external);
-task.map.addInteraction(task.draw_internal);
+task.map.removeInteraction(task.draw_midline);
+task.map.addInteraction(task.draw_neckjoin);
 } else if (answer == 'gotostep6') {
 $("#neckjoin").removeClass("active");
 $("#handle").addClass("active");
 $("#step5").toggle();
 $("#step6").toggle();
-task.map.removeInteraction(task.draw_external);
-task.map.addInteraction(task.draw_internal);
+task.map.removeInteraction(task.draw_neckjoin);
+task.map.addInteraction(task.draw_handle);
 } else if (answer == 'gotostep7') {
 $("#handle").removeClass("active");
 $("#section").addClass("active");
 $("#step6").toggle();
 $("#step7").toggle();
-task.map.removeInteraction(task.draw_external);
-task.map.addInteraction(task.draw_internal);
+task.map.removeInteraction(task.draw_handle);
+task.map.addInteraction(task.draw_section);
 } else {
 $("#section").removeClass("active");
 $("#comments").addClass("active");
 $("#step7").toggle();
 $("#step8").toggle();
-task.map.removeInteraction(task.draw_external);
-task.map.addInteraction(task.draw_internal);
+task.map.removeInteraction(task.draw_section);
 } 
 
 }});
@@ -888,7 +1091,6 @@ var answer = $(evt.target).attr("value");
 if (typeof answer != 'undefined'){
 //Log the answer submitted to console
 console.log(answer);
-
 //console.log(task.map.source.features);
 //console.log(task.source.features);
 
@@ -902,7 +1104,7 @@ lines.push(g.getCoordinates());
 task.answer.scalebar = lines;
 var dimension = parseFloat($("#dimension").val());
 task.answer.dimension = dimension
-}
+} 
 if (task.external) {
 var features = task.source_external.getAllFeatures();
 var lines = [];
@@ -911,7 +1113,7 @@ var g = features[i].getGeometry();
 lines.push(g.getCoordinates());
 }
 task.answer.external = lines;
-}
+} 
 if (task.internal) {
 var features = task.source_internal.getAllFeatures();
 var lines = [];
@@ -920,18 +1122,48 @@ var g = features[i].getGeometry();
 lines.push(g.getCoordinates());
 }
 task.answer.internal = lines;
+} else if (task.midline) {
+var features = task.source_midline.getAllFeatures();
+var lines = [];
+for(i=0;i<features.length;i++) {
+var g = features[i].getGeometry();
+lines.push(g.getCoordinates());
+}
+task.answer.midline = lines;
+} else if (task.neckjoin) {
+var features = task.source_neckjoin.getAllFeatures();
+var lines = [];
+for(i=0;i<features.length;i++) {
+var g = features[i].getGeometry();
+lines.push(g.getCoordinates());
+}
+task.answer.neckjoin = lines;
+} else if (task.handle) {
+var features = task.source_handle.getAllFeatures();
+var lines = [];
+for(i=0;i<features.length;i++) {
+var g = features[i].getGeometry();
+lines.push(g.getCoordinates());
+}
+task.answer.handle = lines;
+} else {
+var features = task.source_section.getAllFeatures();
+var polygons = [];
+for(i=0;i<features.length;i++) {
+var g = features[i].getGeometry();
+polygons.push(g.getCoordinates());
+}
+task.answer.section = polygons;
+}
 
 pybossa.saveTask(task.id, task.answer).done(function() {
 $("#success").fadeIn(500).fadeOut(5500);
-
 deferred.resolve();
 $("#map_" + task.id).remove();
 });
 $("#loading").fadeIn(500);
 
-}
-}
-else {
+} else {
 $("#error").show();
 }
 });
