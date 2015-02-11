@@ -640,6 +640,7 @@ var answer = $(evt.target).attr("value");
 if (typeof answer != 'undefined'){
 if (answer == 'draw') {
 $("#edit").removeClass("active");
+$("#delete").removeClass("active");
 $("#draw").addClass("active");
 if ($("#scalebar").hasClass("active")) {
 task.map.removeInteraction(task.modify_scalebar);
@@ -649,7 +650,7 @@ task.map.addInteraction(task.draw_scalebar);
 task.map.removeInteraction(task.modify_external);
 task.map.removeInteraction(task.select_external);
 task.map.addInteraction(task.draw_external);
-} else if ($("#internal").hasClass("active")) {
+} else {
 task.map.removeInteraction(task.modify_internal);
 task.map.removeInteraction(task.select_internal);
 task.map.addInteraction(task.draw_internal);
@@ -657,6 +658,7 @@ task.map.addInteraction(task.draw_internal);
 
 } else if (answer == 'edit') {
 $("#draw").removeClass("active");
+$("#delete").removeClass("active");
 $("#edit").addClass("active");
 if ($("#scalebar").hasClass("active")) {
 task.map.removeInteraction(task.draw_scalebar);
@@ -666,47 +668,37 @@ task.map.addInteraction(task.modify_scalebar);
 task.map.removeInteraction(task.draw_external);
 task.map.addInteraction(task.select_external);
 task.map.addInteraction(task.modify_external);
-} else if ($("#internal").hasClass("active")) {
+} else {
 task.map.removeInteraction(task.draw_internal);
 task.map.addInteraction(task.select_internal);
 task.map.addInteraction(task.modify_internal);
 }
 
 } else if (answer == 'delete') {
-if ($("#scalebar").hasClass("active")) {
 $("#draw").removeClass("active");
 $("#edit").removeClass("active");
 $("#delete").addClass("active");
+if ($("#scalebar").hasClass("active")) {
 var features = task.source_scalebar.getAllFeatures();
 for(i=0;i<features.length;i++) {
 task.source_scalebar.removeFeature(features[i]);
 }
 task.scalebar = false;
-$("#draw").addClass("active");
-$("#delete").removeClass("active");
 } else if ($("#external").hasClass("active")) {
-$("#draw").removeClass("active");
-$("#edit").removeClass("active");
-$("#delete").addClass("active");
 var features = task.source_external.getAllFeatures();
 for(i=0;i<features.length;i++) {
 task.source_external.removeFeature(features[i]);
 }
 task.external = false;
-$("#draw").addClass("active");
-$("#delete").removeClass("active");
-} else if ($("#internal").hasClass("active")) {
-$("#draw").removeClass("active");
-$("#edit").removeClass("active");
-$("#delete").addClass("active");
+} else {
 var features = task.source_internal.getAllFeatures();
 for(i=0;i<features.length;i++) {
 task.source_internal.removeFeature(features[i]);
 }
 task.internal = false;
+}
 $("#draw").addClass("active");
 $("#delete").removeClass("active");
-}
 }
 
 }});
