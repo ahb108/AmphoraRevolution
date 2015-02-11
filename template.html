@@ -524,8 +524,6 @@ $("#draw").addClass("disabled");
 $("#edit").addClass("disabled");
 $("#delete").addClass("disabled");
 $("#scalebar").addClass("disabled");
-$("#external").addClass("disabled");
-$("#internal").addClass("disabled");
 $("#map").append(div_map);
 div_map.attr("id", "map_" + task.id);
 img.load(function() {
@@ -535,8 +533,6 @@ $("#draw").removeClass("disabled");
 $("#edit").removeClass("disabled");
 $("#delete").removeClass("disabled");
 $("#scalebar").removeClass("disabled");
-$("#external").removeClass("disabled");
-$("#internal").removeClass("disabled");
 $("#status").text("Photo loaded");
 });
 img.attr('src', task.info.url_b).css('height', 100);
