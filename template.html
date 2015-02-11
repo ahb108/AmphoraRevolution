@@ -165,12 +165,139 @@ task.
 				</button>
 			</div>
 			<div class="btn-group">
+				<button id="gotostep4" class="btn btn-success btn-next" value='gotostep4'>
+					<i class="icon icon-white icon-save"></i> Next
+				</button>
+			</div>
+		</div>
+		
+		<div id="step4" style="display:none;">
+			<h1>Step 4. Draw the mid-line of the vessel:</h1>
+			<div class="btn-group">
+				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
+					Photo loaded
+				</button>
+				<button id="midline" type="button" class="btn btn-default btn-type active" name="midline" value="midline">
+					Mid-Line
+				</button>
+			</div>
+			<div class="btn-group">
+				<button id="draw" type="button" class="btn btn-default btn-draw active" name="draw" value="draw">
+					Draw
+				</button>
+				<button id="edit" type="button" class="btn btn-default btn-draw" name="edit" value="edit">
+					Edit
+				</button>
+				<button id="delete" type="button" class="btn btn-default btn-draw" name="delete" value="delete">
+					Delete
+				</button>
+			</div>
+			<div class="btn-group">
+				<button id="gotostep5" class="btn btn-success btn-next" value='gotostep5'>
+					<i class="icon icon-white icon-save"></i> Next
+				</button>
+			</div>
+		</div>
+		
+		<div id="step5" style="display:none;">
+			<h1>Step 5. Draw the (approximate) neck-join of the vessel:</h1>
+			<div class="btn-group">
+				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
+					Photo loaded
+				</button>
+				<button id="neckjoin" type="button" class="btn btn-default btn-type active" name="neckjoin" value="neckjoin">
+					Neck-Join
+				</button>
+			</div>
+			<div class="btn-group">
+				<button id="draw" type="button" class="btn btn-default btn-draw active" name="draw" value="draw">
+					Draw
+				</button>
+				<button id="edit" type="button" class="btn btn-default btn-draw" name="edit" value="edit">
+					Edit
+				</button>
+				<button id="delete" type="button" class="btn btn-default btn-draw" name="delete" value="delete">
+					Delete
+				</button>
+			</div>
+			<div class="btn-group">
+				<button id="gotostep6" class="btn btn-success btn-next" value='gotostep6'>
+					<i class="icon icon-white icon-save"></i> Next
+				</button>
+			</div>
+		</div>
+		
+		<div id="step6" style="display:none;">
+			<h1>Step 6. Draw the handle of the vessel:</h1>
+			<div class="btn-group">
+				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
+					Photo loaded
+				</button>
+				<button id="handle" type="button" class="btn btn-default btn-type active" name="handle" value="handle">
+					Handle
+				</button>
+			</div>
+			<div class="btn-group">
+				<button id="draw" type="button" class="btn btn-default btn-draw active" name="draw" value="draw">
+					Draw
+				</button>
+				<button id="edit" type="button" class="btn btn-default btn-draw" name="edit" value="edit">
+					Edit
+				</button>
+				<button id="delete" type="button" class="btn btn-default btn-draw" name="delete" value="delete">
+					Delete
+				</button>
+			</div>
+			<div class="btn-group">
+				<button id="gotostep7" class="btn btn-success btn-next" value='gotostep7'>
+					<i class="icon icon-white icon-save"></i> Next
+				</button>
+			</div>
+		</div>
+		
+		<div id="step7" style="display:none;">
+			<h1>Step 7. Draw the handle-section of the vessel:</h1>
+			<div class="btn-group">
+				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
+					Photo loaded
+				</button>
+				<button id="section" type="button" class="btn btn-default btn-type active" name="section" value="section">
+					Handle-Section
+				</button>
+			</div>
+			<div class="btn-group">
+				<button id="draw" type="button" class="btn btn-default btn-draw active" name="draw" value="draw">
+					Draw
+				</button>
+				<button id="edit" type="button" class="btn btn-default btn-draw" name="edit" value="edit">
+					Edit
+				</button>
+				<button id="delete" type="button" class="btn btn-default btn-draw" name="delete" value="delete">
+					Delete
+				</button>
+			</div>
+			<div class="btn-group">
+				<button id="gotostep8" class="btn btn-success btn-next" value='gotostep8'>
+					<i class="icon icon-white icon-save"></i> Next
+				</button>
+			</div>
+		</div>
+		
+		<div id="step8" style="display:none;">
+			<h1>Step 8. Add any comments and submit:</h1>
+        	<form id="comments" role="form">        
+            	<div class="form-group">
+                	<label class="control-label" for="transcription">Page Transcription</label>
+                	<textarea class="form-control" rows="5" name="comments" placeholder="(Add any comments you have here or leave it blank)"></textarea>
+            	</div>
+        	</form>
+			<div class="btn-group">
 				<button id="btn-save" class="btn btn-success btn-answer" value='save'>
 					<i class="icon icon-white icon-save"></i> Submit All
 				</button>
 			</div>
 		</div>
-
+		
 	</div>
 </div>
 
@@ -714,17 +841,49 @@ $("#scalebar").removeClass("active");
 $("#external").addClass("active");
 task.map.removeInteraction(task.draw_scalebar);
 task.map.addInteraction(task.draw_external);
-}
-
-if (answer == 'gotostep3') {
+} else if (answer == 'gotostep3') {
 $("#external").removeClass("active");
 $("#internal").addClass("active");
-$("#btn-save").show();
 $("#step2").toggle();
 $("#step3").toggle();
 task.map.removeInteraction(task.draw_external);
 task.map.addInteraction(task.draw_internal);
-}
+} else if (answer == 'gotostep4') {
+$("#internal").removeClass("active");
+$("#midline").addClass("active");
+$("#step3").toggle();
+$("#step4").toggle();
+task.map.removeInteraction(task.draw_external);
+task.map.addInteraction(task.draw_internal);
+} else if (answer == 'gotostep5') {
+$("#midline").removeClass("active");
+$("#neckjoin").addClass("active");
+$("#step4").toggle();
+$("#step5").toggle();
+task.map.removeInteraction(task.draw_external);
+task.map.addInteraction(task.draw_internal);
+} else if (answer == 'gotostep6') {
+$("#neckjoin").removeClass("active");
+$("#handle").addClass("active");
+$("#step5").toggle();
+$("#step6").toggle();
+task.map.removeInteraction(task.draw_external);
+task.map.addInteraction(task.draw_internal);
+} else if (answer == 'gotostep7') {
+$("#handle").removeClass("active");
+$("#section").addClass("active");
+$("#step6").toggle();
+$("#step7").toggle();
+task.map.removeInteraction(task.draw_external);
+task.map.addInteraction(task.draw_internal);
+} else {
+$("#section").removeClass("active");
+$("#comments").addClass("active");
+$("#step7").toggle();
+$("#step8").toggle();
+task.map.removeInteraction(task.draw_external);
+task.map.addInteraction(task.draw_internal);
+} 
 
 }});
 
