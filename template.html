@@ -69,9 +69,7 @@
 </style>
 
 <!--
-Task DOM for loading the S3 Images
-It uses the class="skeleton" to identify the elements that belong to the
-task.
+Task DOM for loading the S3 Images using class="skeleton" to identify the elements that belong to the task.
 -->
 <div class="row skeleton">
 	<div class="col-md-12">
@@ -172,7 +170,7 @@ task.
 		</div>
 		
 		<div id="step4" style="display:none;">
-			<h1>Step 4. Draw the mid-line of the vessel:</h1>
+			<h1>Step 4. Draw a mid-line box over one side of the vessel:</h1>
 			<div class="btn-group">
 				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
 					Photo loaded
@@ -200,7 +198,7 @@ task.
 		</div>
 		
 		<div id="step5" style="display:none;">
-			<h1>Step 5. Draw the (approximate) neck-join of the vessel:</h1>
+			<h1>Step 5. Draw a box over the (approximate) neck-join of the vessel:</h1>
 			<div class="btn-group">
 				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
 					Photo loaded
@@ -228,7 +226,7 @@ task.
 		</div>
 		
 		<div id="step6" style="display:none;">
-			<h1>Step 6. Draw the handle of the vessel:</h1>
+			<h1>Step 6. Draw the handle(s) of the vessel:</h1>
 			<div class="btn-group">
 				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
 					Photo loaded
@@ -824,30 +822,30 @@ type: 'LineString',
 });
 task.draw_external = new ol.interaction.Draw({
 source: task.source_external,
-type: 'LineString',
+type: 'Polygon',
 });
 task.draw_internal = new ol.interaction.Draw({
 source: task.source_internal,
-type: 'LineString',
+type: 'Polygon',
 });
 task.draw_midline = new ol.interaction.Draw({
 source: task.source_midline,
-type: 'LineString',
+type: 'Polygon',
 });
 task.draw_neckjoin = new ol.interaction.Draw({
 source: task.source_neckjoin,
-type: 'LineString',
+type: 'Polygon',
 });
 task.draw_handle = new ol.interaction.Draw({
 source: task.source_handle,
-type: 'LineString',
+type: 'Polygon',
 });
 task.draw_section = new ol.interaction.Draw({
 source: task.source_section,
 type: 'Polygon',
 });
 
-// When the first  line is completed, remove the drawInteraction
+// When the first  polygon or line is completed, remove the drawInteraction
 task.draw_scalebar.on('drawend', function(evt) {
 task.scalebar = true;
 });
@@ -908,7 +906,7 @@ $(':input','#comments')
 $('#task-id').html(task.id);
 $("#map_" + task.id).show();
 
-// Code for drawing lines
+// Code for drawing polygons and lines
 $('.btn-draw').off('click').on('click', function(evt) {
 var answer = $(evt.target).attr("value");
 if (typeof answer != 'undefined'){
@@ -1110,48 +1108,48 @@ task.answer.dimension = dimension
 } 
 if (task.external) {
 var features = task.source_external.getAllFeatures();
-var lines = [];
+var polygons = [];
 for(i=0;i<features.length;i++) {
 var g = features[i].getGeometry();
-lines.push(g.getCoordinates());
+polygons.push(g.getCoordinates());
 }
-task.answer.external = lines;
+task.answer.external = polygons;
 } 
 if (task.internal) {
 var features = task.source_internal.getAllFeatures();
-var lines = [];
+var polygons = [];
 for(i=0;i<features.length;i++) {
 var g = features[i].getGeometry();
-lines.push(g.getCoordinates());
+polygons.push(g.getCoordinates());
 }
-task.answer.internal = lines;
+task.answer.internal = polygons;
 }
 if (task.midline) {
 var features = task.source_midline.getAllFeatures();
-var lines = [];
+var polygons = [];
 for(i=0;i<features.length;i++) {
 var g = features[i].getGeometry();
-lines.push(g.getCoordinates());
+polygons.push(g.getCoordinates());
 }
-task.answer.midline = lines;
+task.answer.midline = polygons;
 }
 if (task.neckjoin) {
 var features = task.source_neckjoin.getAllFeatures();
-var lines = [];
+var polygons = [];
 for(i=0;i<features.length;i++) {
 var g = features[i].getGeometry();
-lines.push(g.getCoordinates());
+polygons.push(g.getCoordinates());
 }
-task.answer.neckjoin = lines;
+task.answer.neckjoin = polygons;
 } 
 if (task.handle) {
 var features = task.source_handle.getAllFeatures();
-var lines = [];
+var polygons = [];
 for(i=0;i<features.length;i++) {
 var g = features[i].getGeometry();
-lines.push(g.getCoordinates());
+polygons.push(g.getCoordinates());
 }
-task.answer.handle = lines;
+task.answer.handle = polygons;
 } 
 if (task.section) {
 var features = task.source_section.getAllFeatures();
