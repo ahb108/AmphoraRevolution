@@ -434,36 +434,57 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<!-- Modal header -->
 			<div class="modal-header">
 				<h3>Profile drawing tutorial for 3D modelling </h3>
 			</div>
 			<div id="0" class="modal-body" style="display:none">
 				<p>
-					This application is very simple (but it does not yet work on mobile devices). When you participate, the platform will load a scanned drawing of a Roman amphora, an example of of one of the many kinds of specialised clay jar that were used to transport goods around the Mediterranean Sea from as early as the Bronze Age, but with a particular popularity in the Roman Republic (c.509-27 BC) and Empire (ca.27 BC- AD 476, but enduring still longer as the Byzantine empire in the eastern Mediterranean).
-					These drawings are typical of how archaeologists traditionally record the shape and style of containers and other vessel shapes, with the external of the vessel shown on one side of the drawing and the interior profile shown on the other side (sometimes also with a 'section' shown through other features such as the handles).
-					We are asking for help in digitising these drawings as 2-dimensional lines that can then be automatically revolved into a 3D object. Once the scanned drawing has been loaded, you will be asked to click or tap around the edge of the artefact in order to define each of a series of lines representing the exterior and interior profiles, as well as several other features if they are present.
-					Click once every time you wish to add a point along the edge of a line and your final point will snap back onto the one you started with. You must draw one line only for each of these features. In general, we would like you to draw your lines roughly in the middle of pixellated lines you see the and as carefully as you can.
+					This application is very simple (but it does not yet work on mobile devices). When you participate, the platform will load a scanned drawing of an amphora such as the one below.
+					These drawings are typical of how archaeologists traditionally record vessel shapes, with the outside of the vessel shown on one side of the drawing and the interior profile shown on the other side (sometimes also with a 'section' shown through other features such as the handles).
 				</p>
-				<img src="http://micropasts.org/wp-content/uploads/2014/12/Wantage_Tutorial.png" width="100%" class="img-polaroid" alt="An example of an artefact photograph whose outline has been defined" />
+				<p>	
+					We are asking for help in digitising these drawings as 2-dimensional polygons that can then be used for futher analysis themselves, but have the advantage of also being ready for conversion into a 3D object.
+				</p>
+				<p>
+				Once the scanned drawing has been loaded, you will proceed in a series of steps as follows:
+				<ul>
+					<li>Calibrate the drawing by drawing a line across its scale-bar and entering in the measured distance in metres.</li>
+					<li>Draw the external shape of the amphora as polygons.</li>
+					<li>Draw the interior of the amphora as two distinct polygons, one for the main cavity and another for neck portion.</li>
+					<li>Draw a box around one half of the amphora where there is not profile information (useful for later processing)</li>
+					<li>Draw the handles and handle section (if shown).</li>
+				</ul>
+				</p>
+				<img src="http://micropasts-other.s3.amazonaws.com/amphs1tut/intro.png" width="100%" class="img-polaroid" alt="An example of an amphora loaded into the application" />
 			</div>
 			<div id="1" class="modal-body" style="display:none">
 				<p>
-					How to use the application's photo-masking toolbar:
-				</p>
-				<img src="http://micropasts.org/wp-content/uploads/2014/11/Photomasking_Toolbar.png" width="100%" alt="Photo-masking Toolbar" />
-				<p>
-				<p>
-					<strong>external</strong>: This button is selected and enabled by default, indicating that your following actions, i.e. drawing and editing, will relate to the outline of the object.
-				</p>
-				<p>
-					<strong>Draw</strong>: This option is selected by default, at the beginning of a task. Click on 'Draw' whenever you want to start drawing an outline of the object. Once you complete an outline polygon, the delineating line will turn from blue to yellow.
+					For most of the steps in each task, you will be asked to digitise a line or polygon by clicking along its outline. 
+					When you are finished a line or polygon, double click to complete it. 
+					If you are doing a polygon it will atomatically join it back up to the first point you created. 
+					You use the digitsing toolbar to eithr draw, edit or delete the features you create in each step of the task. 
+					You can then click 'Next' to proceed to the next step of the task, and will be allowed to 'Submit all' once you complete all steps. 
 				</p>
 				<p>
-					<strong>Edit</strong>: This option is enabled once there is at least one complete line drawn. After clicking on 'Edit', choose the line you wish to edit by clicking once anywhere on it. It will turn blue, and become available for editing such that you will be able to re-position the blue nodes that give the line its shape.
+					How to use the application's digitising toolbar:
+				</p>
+				<img src="http://micropasts-other.s3.amazonaws.com/amphs1tut/toolbar.png" width="50%" alt="Digitising Toolbar" />
+				<p>
+				<p>
+					<strong>Photo loaded</strong>: This label simply indicates whether you are waiting for the scan to be loaded into the application.
+					If it says 'Photo loaded', then you can begin digitising.
 				</p>
 				<p>
-					<strong>Delete</strong>: Use this option if you wish to start over. Clicking this button will remove all drawn lines.
+					<strong>Scalebar</strong>: This label indicates what part of the amphora you are currently digitising.
+				</p>
+				<p>
+					<strong>Draw</strong>: This option is selected by default, at the beginning of a task. Click on 'Draw' whenever you want to start drawing a line or polygon. Once you complete your drawing of a feature, the delineating line will turn from blue to a different colour.
+				</p>
+				<p>
+					<strong>Edit</strong>: This option is enabled once there is at least one complete feature drawn. After clicking on 'Edit', choose the line or polygon you wish to edit by clicking once anywhere on it. It will turn blue, and become available for editing such that you will be able to re-position the blue nodes that give the line its shape.
+				</p>
+				<p>
+					<strong>Delete</strong>: Use this option if you wish to delete your existing drawing (for the current step only).
 				</p>
 				</p>
 			</div>
