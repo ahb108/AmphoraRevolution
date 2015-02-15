@@ -508,7 +508,7 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 					Please make sure you input this width in metres (so if the scalebar says 50cm, enter 0.5).
 				</li>
 				</ul>
-				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/step1.png" width="80%" alt="Digitising Toolbar" />
+				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/step1.png" width="80%" alt="Step 1 example" />
 			</div>
 			
 			<div id="4" class="modal-body" style="display:none">
@@ -518,7 +518,7 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 					Around handle joins, you may need to guess how the oultine continues, 
 					but your end result should look something like the one below.
 				</p>
-				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/step2.png" width="80%" alt="Digitising Toolbar" />
+				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/step2.png" width="50%" alt="Step 2 example" />
 			</div>
 			
 			<div id="5" class="modal-body" style="display:none">
@@ -526,23 +526,48 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 					In step 3, you will be asked to draw a polygon outlining the internal cavity of the amphora.
 				</p>
 				<p> 
-					You line will be shown in pink once you complete the sketch. You focus will be on drawing the intrnal shape of the vessel as 
-					shown on the left-hand side of the drawing, and you polygon should then be made to extend an arbitrary amount over the vessel mid-line 
+					Your polygon outline will be shown in pink once you complete the sketch. Your focus will be on drawing the intrnal shape of the vessel as 
+					shown on the left-hand side of the drawing, and your polygon should extend an arbitrary amount over the top of vessel and over the vessel mid-line 
 					(it will be clipped accurately in post-processing). You finished polygon (overlayed on the results from the preivous steps) 
 					should look something like the one below.
 				</p>
-				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/step3.png" width="80%" alt="Digitising Toolbar" />
+				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/step3.png" width="50%" alt="Step 3 example" />
 			</div>
 			
 			<div id="6" class="modal-body" style="display:none">
 				<p>
+					In steps 4 and 5, you will be asked to draw polygons outlining the non-profile portion of the drawing (the right-hand side in most cases) and the nexk portion of the amphora.
+					Your polygon for the vessel mid-line should delineate this midline exactly but then extend an arbitrary amount above, below and to the right of the vessel. 
+					(it will be used for post-processing). Your polygon for the vessel neck-join should be a box in which the bottom side defines what you think to be the breakpoint between the main body of the vessel and its neck. 
+					Sometimes this is hard to judge, but do your best.
+				</p>
+				<p> 
+					Your polygon outlines will be shown in orange and maroon respectively once you complete the sketches. 
+					Your finished polygons (overlayed on the results from the preivous steps) 
+					should look something like the ones below.
+				</p>
+				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/steps45.png" width="50%" alt="Steps 4-5 example" />
+			</div>
+
+			<div id="7" class="modal-body" style="display:none">
+				<p>
+					In steps 6, 7 and 8, you will be asked to draw polygons outlining the left-hand handle, right-hand hanlde and handle sections, if these are shown.
+				</p>
+				<p> 
+					For the left and right handles, please make sure that you draw polygons that extend into the space between the external and internal profiles of the amphora, 
+					as shown below (these will be clipped back in post-processing):
+				</p>
+				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/steps678.png" width="40%" alt="Steps 6-8 example" />
+			</div>
+						
+			<div id="8" class="modal-body" style="display:none">
+				<p>
+					In the last step, you will be asked if you wish to enter any of your own comments 
+					(e.g. concerns you have about this drawing or notes about incomplete parts). Please keep these brief,
+					as you can always post lengthier questions or comments on our <a href="http://community.micropasts.org" title="Community forum">community forum</a>.
+				</p>
+				<p>
 					During the task, you can always return to this tutorial via the "Tutorial" button.
-				</p>
-				<p>
-					An example of a finished <a href="http://micropasts.org/3D">3D model</a> has now been completed.
-				</p>
-				<p>
-					To find out how the project is progressing, to suggest changes to this application or to propose new research ideas based what you have photo-masked, please have a look at our <a href="http://community.micropasts.org" title="Community forum">community forum</a>.
 				</p>
 			</div>
 
@@ -571,7 +596,7 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 			$("#prevBtn").show();
 		}
 
-		if (step == 6) {
+		if (step == 8) {
 			$("#nextBtn").hide();
 			$("#startContrib").show();
 		}
