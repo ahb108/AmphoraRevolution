@@ -42,7 +42,7 @@
 				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/toolbar.png" width="50%" alt="Digitising Toolbar" />
 				<p>
 				<p>
-					<strong>Photo loaded</strong>: This label simply indicates whether you are waiting for the scan to be loaded into the application.
+					<strong>Photo loaded</strong>: This label simply indicates whether or not you are waiting for the scan to be loaded into the application.
 					If it says 'Photo loaded', then you can begin digitising.
 				</p>
 				<p>
@@ -61,6 +61,46 @@
 			</div>
 
 			<div id="3" class="modal-body" style="display:none">
+				<p>
+					In step 1, you will be asked to draw a line from on end of the scale-bar shown in the drawing to the other.
+				</p>
+				<p> 
+					IMPORTANT: please only enter two points to create the line, not more.
+				</p>
+				<p>
+					Once you have drawn the line, it will appear in green. Then please enter the stated width of the line in the box provided above the drawing.
+				</p>
+				<p>
+					IMPORTANT: please make sure you input this width in metres (so if the scalebar says 50cm, enter 0.5).
+				</p>
+				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/step1.png" width="80%" alt="Digitising Toolbar" />
+			</div>
+			
+			<div id="4" class="modal-body" style="display:none">
+				<p>
+					In step 2, you will be asked to draw a polygon outlining the external shape of the amphora.
+				</p>
+				<p> 
+					You line will be shown in yellow once you complete the sketch. Around handle joins, you may need to guess how the oultine continues, 
+					but your end result should look something like the one below.
+				</p>
+				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/step1.png" width="80%" alt="Digitising Toolbar" />
+			</div>
+			
+			<div id="5" class="modal-body" style="display:none">
+				<p>
+					In step 3, you will be asked to draw a polygon outlining the internal cavity of the amphora.
+				</p>
+				<p> 
+					You line will be shown in pink once you complete the sketch. You focus will be on drawing the intrnal shape of the vessel as 
+					shown on the left-hand side of the drawing, and you polygon should then be made to extend an arbitrary amount over the vessel mid-line 
+					(it will be clipped accurately in post-processing). You finished polygon (overlayed on the results from the preivous steps) 
+					should look something like the one below.
+				</p>
+				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/step2.png" width="80%" alt="Digitising Toolbar" />
+			</div>
+			
+			<div id="6" class="modal-body" style="display:none">
 				<p>
 					During the task, you can always return to this tutorial via the "Tutorial" button.
 				</p>
@@ -97,7 +137,7 @@
 			$("#prevBtn").show();
 		}
 
-		if (step == 3) {
+		if (step == 6) {
 			$("#nextBtn").hide();
 			$("#startContrib").show();
 		}
