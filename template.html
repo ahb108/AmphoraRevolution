@@ -434,21 +434,23 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
+		<div class="modal-content">
 			<div class="modal-header">
 				<h3>Profile drawing tutorial for 3D modelling </h3>
 			</div>
 			<div id="0" class="modal-body" style="display:none">
 				<p>
-					This application is very simple (but it does not yet work on mobile devices). When you participate, the platform will load a scanned drawing of an amphora such as the one below.
-					These drawings are typical of how archaeologists traditionally record vessel shapes, with the outside of the vessel shown on one side of the drawing and the interior profile shown on the other side (sometimes also with a 'section' shown through other features such as the handles).
+					This application is very simple (but unfortunately does not yet work on mobile devices). When you participate, the platform will load a scanned drawing of an amphora such as the one below.
+					These drawings are typical of how archaeologists traditionally record vessel shapes, with the outside of the vessel shown on one side of the drawing and the interior profile shown on the other side 
+					(sometimes also with a further section showing the handle shape).
 				</p>
 				<p>	
-					We are asking for help in digitising these drawings as 2-dimensional polygons that can then be used for futher analysis themselves, but have the advantage of also being ready for conversion into a 3D object.
+					We are asking for help in digitising these drawings as 2D polygons that can then be used for futher analysis. These polygons also have the advantage of being ready for conversion into a 3D object.
 				</p>
 				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/intro.png" width="100%" class="img-polaroid" alt="An example of an amphora loaded into the application" />
 			</div>
 			<div id="1" class="modal-body" style="display:none">
-								<p>
+				<p>
 				Once the scanned drawing has been loaded, you will proceed in a series of steps as follows:
 				<ul>
 					<li>Calibrate the image's diemnsions by measuring the scale-bar shown on the drawing and entering its stated width in metres.</li>
@@ -465,6 +467,8 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 					You use the digitsing toolbar to eithr draw, edit or delete the features you create in each step of the task. 
 					You can then click 'Next' to proceed to the next step of the task, and will be allowed to 'Submit all' once you complete all steps. 
 				</p>
+			</div>
+			<div id="2" class="modal-body" style="display:none">
 				<p>
 					How to use the application's digitising toolbar:
 				</p>
@@ -489,7 +493,7 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 				</p>
 			</div>
 
-			<div id="2" class="modal-body" style="display:none">
+			<div id="3" class="modal-body" style="display:none">
 				<p>
 					During the task, you can always return to this tutorial via the "Tutorial" button.
 				</p>
@@ -526,7 +530,7 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 			$("#prevBtn").show();
 		}
 
-		if (step == 2) {
+		if (step == 3) {
 			$("#nextBtn").hide();
 			$("#startContrib").show();
 		}
