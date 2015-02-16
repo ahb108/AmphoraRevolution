@@ -59,7 +59,7 @@
 		font-family: 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
 	}
 </style>
-<script src="http://ol3js.org/en/master/build/ol.js" type="text/javascript"></script>
+<!-- <script src="http://ol3js.org/en/master/build/ol.js" type="text/javascript"></script> -->
 <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 <!-- <script src="/static/js/vendor/ol3photomask.js" type="text/javascript"></script> -->
 <style>
@@ -114,7 +114,7 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 			</div>
 		</div>
 
-		<div id="step2" style="display:none;">
+		<!-- <div id="step2" style="display:none;">
 			<h1>Step 2. Draw the external profile of the vessel:</h1>
 			<div class="btn-group">
 				<button id="status" type="button" class="btn btn-default btn-type disabled" name="loading" value="loading">
@@ -308,8 +308,7 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 					<i class="icon icon-white icon-save"></i> Next
 				</button>
 			</div>
-		</div>
-		
+		</div> -->		
 		<div id="step9" style="display:none;">
 			<h1>Step 9. Add any comments and submit:</h1>
         	<form id="comments" role="form">        
@@ -440,7 +439,7 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 			</div>
 			<div id="0" class="modal-body" style="display:none">
 				<p>
-					This application is very simple (but unfortunately does not yet work on mobile devices). When you participate, the platform will load a scanned drawing of an amphora such as the one below.
+					This application is broken up into a series of carefully structured steps. When you participate, the platform will load a scanned drawing of an amphora such as the one below.
 					These drawings are typical of how archaeologists traditionally record vessel shapes, with the outside of the vessel shown on one side of the drawing and the interior profile shown on the other side 
 					(sometimes also with a further section showing the handle shape).
 				</p>
@@ -657,6 +656,8 @@ console.log(task.info.url_b);
 img.addClass('img-polaroid');
 task.info.image = img;
 
+// Map Set-up
+
 // Maps always need a projection, but the static image is not geo-referenced,
 // and is only measured in pixels.  So, we create a fake projection that the
 // map can use to properly display the layer.
@@ -683,13 +684,13 @@ color: '#ffcc33'
 })];
 
 task.source_scalebar = new ol.source.Vector();
-task.source_external = new ol.source.Vector();
-task.source_internal = new ol.source.Vector();
-task.source_midline = new ol.source.Vector();
-task.source_neckjoin = new ol.source.Vector();
-task.source_lhandle = new ol.source.Vector();
-task.source_rhandle = new ol.source.Vector();
-task.source_section = new ol.source.Vector();
+// task.source_external = new ol.source.Vector();
+// task.source_internal = new ol.source.Vector();
+// task.source_midline = new ol.source.Vector();
+// task.source_neckjoin = new ol.source.Vector();
+// task.source_lhandle = new ol.source.Vector();
+// task.source_rhandle = new ol.source.Vector();
+// task.source_section = new ol.source.Vector();
 
 task.scalebar = new ol.layer.Vector({
 source: task.source_scalebar,
@@ -710,138 +711,138 @@ color: '#33ff55'
 })
 });
 
-task.external = new ol.layer.Vector({
-source: task.source_external,
-style: new ol.style.Style({
-fill: new ol.style.Fill({
-color: 'rgba(255, 255, 255, 0.2)'
-}),
-stroke: new ol.style.Stroke({
-color: '#ffcc33',
-width: 2
-}),
-image: new ol.style.Circle({
-radius: 7,
-fill: new ol.style.Fill({
-color: '#ffcc33'
-})
-})
-})
-});
-
-task.internal = new ol.layer.Vector({
-source: task.source_internal,
-style: new ol.style.Style({
-fill: new ol.style.Fill({
-color: 'rgba(255, 255, 255, 0.2)'
-}),
-stroke: new ol.style.Stroke({
-color: '#FF00FF',
-width: 2
-}),
-image: new ol.style.Circle({
-radius: 7,
-fill: new ol.style.Fill({
-color: '#FF00FF'
-})
-})
-})
-});
-
-task.midline = new ol.layer.Vector({
-source: task.source_midline,
-style: new ol.style.Style({
-fill: new ol.style.Fill({
-color: 'rgba(255, 255, 255, 0.2)'
-}),
-stroke: new ol.style.Stroke({
-color: '#FF7F50',
-width: 2
-}),
-image: new ol.style.Circle({
-radius: 7,
-fill: new ol.style.Fill({
-color: '#FF7F50'
-})
-})
-})
-});
-
-task.neckjoin = new ol.layer.Vector({
-source: task.source_neckjoin,
-style: new ol.style.Style({
-fill: new ol.style.Fill({
-color: 'rgba(255, 255, 255, 0.2)'
-}),
-stroke: new ol.style.Stroke({
-color: '#B22222',
-width: 2
-}),
-image: new ol.style.Circle({
-radius: 7,
-fill: new ol.style.Fill({
-color: '#B22222'
-})
-})
-})
-});
-
-task.lhandle = new ol.layer.Vector({
-source: task.source_lhandle,
-style: new ol.style.Style({
-fill: new ol.style.Fill({
-color: 'rgba(255, 255, 255, 0.2)'
-}),
-stroke: new ol.style.Stroke({
-color: '#800080',
-width: 2
-}),
-image: new ol.style.Circle({
-radius: 7,
-fill: new ol.style.Fill({
-color: '#800080'
-})
-})
-})
-});
-
-task.rhandle = new ol.layer.Vector({
-source: task.source_rhandle,
-style: new ol.style.Style({
-fill: new ol.style.Fill({
-color: 'rgba(255, 255, 255, 0.2)'
-}),
-stroke: new ol.style.Stroke({
-color: '#800080',
-width: 2
-}),
-image: new ol.style.Circle({
-radius: 7,
-fill: new ol.style.Fill({
-color: '#800080'
-})
-})
-})
-});
-
-task.section = new ol.layer.Vector({
-source: task.source_section,
-style: new ol.style.Style({
-fill: new ol.style.Fill({
-color: 'rgba(255, 255, 255, 0.2)'
-}),
-stroke: new ol.style.Stroke({
-color: '#800000',
-width: 2
-}),
-image: new ol.style.Circle({
-radius: 7,
-fill: new ol.style.Fill({
-color: '#800000'
-})
-})
-})
-});
+// task.external = new ol.layer.Vector({
+// source: task.source_external,
+// style: new ol.style.Style({
+// fill: new ol.style.Fill({
+// color: 'rgba(255, 255, 255, 0.2)'
+// }),
+// stroke: new ol.style.Stroke({
+// color: '#ffcc33',
+// width: 2
+// }),
+// image: new ol.style.Circle({
+// radius: 7,
+// fill: new ol.style.Fill({
+// color: '#ffcc33'
+// })
+// })
+// })
+// });
+// 
+// task.internal = new ol.layer.Vector({
+// source: task.source_internal,
+// style: new ol.style.Style({
+// fill: new ol.style.Fill({
+// color: 'rgba(255, 255, 255, 0.2)'
+// }),
+// stroke: new ol.style.Stroke({
+// color: '#FF00FF',
+// width: 2
+// }),
+// image: new ol.style.Circle({
+// radius: 7,
+// fill: new ol.style.Fill({
+// color: '#FF00FF'
+// })
+// })
+// })
+// });
+// 
+// task.midline = new ol.layer.Vector({
+// source: task.source_midline,
+// style: new ol.style.Style({
+// fill: new ol.style.Fill({
+// color: 'rgba(255, 255, 255, 0.2)'
+// }),
+// stroke: new ol.style.Stroke({
+// color: '#FF7F50',
+// width: 2
+// }),
+// image: new ol.style.Circle({
+// radius: 7,
+// fill: new ol.style.Fill({
+// color: '#FF7F50'
+// })
+// })
+// })
+// });
+// 
+// task.neckjoin = new ol.layer.Vector({
+// source: task.source_neckjoin,
+// style: new ol.style.Style({
+// fill: new ol.style.Fill({
+// color: 'rgba(255, 255, 255, 0.2)'
+// }),
+// stroke: new ol.style.Stroke({
+// color: '#B22222',
+// width: 2
+// }),
+// image: new ol.style.Circle({
+// radius: 7,
+// fill: new ol.style.Fill({
+// color: '#B22222'
+// })
+// })
+// })
+// });
+// 
+// task.lhandle = new ol.layer.Vector({
+// source: task.source_lhandle,
+// style: new ol.style.Style({
+// fill: new ol.style.Fill({
+// color: 'rgba(255, 255, 255, 0.2)'
+// }),
+// stroke: new ol.style.Stroke({
+// color: '#800080',
+// width: 2
+// }),
+// image: new ol.style.Circle({
+// radius: 7,
+// fill: new ol.style.Fill({
+// color: '#800080'
+// })
+// })
+// })
+// });
+// 
+// task.rhandle = new ol.layer.Vector({
+// source: task.source_rhandle,
+// style: new ol.style.Style({
+// fill: new ol.style.Fill({
+// color: 'rgba(255, 255, 255, 0.2)'
+// }),
+// stroke: new ol.style.Stroke({
+// color: '#800080',
+// width: 2
+// }),
+// image: new ol.style.Circle({
+// radius: 7,
+// fill: new ol.style.Fill({
+// color: '#800080'
+// })
+// })
+// })
+// });
+// 
+// task.section = new ol.layer.Vector({
+// source: task.source_section,
+// style: new ol.style.Style({
+// fill: new ol.style.Fill({
+// color: 'rgba(255, 255, 255, 0.2)'
+// }),
+// stroke: new ol.style.Stroke({
+// color: '#800000',
+// width: 2
+// }),
+// image: new ol.style.Circle({
+// radius: 7,
+// fill: new ol.style.Fill({
+// color: '#800000'
+// })
+// })
+// })
+// });
 
 task.overlay = new ol.FeatureOverlay({
 style: new ol.style.Style({
@@ -868,57 +869,57 @@ featureOverlay: task.overlay });
 task.select_scalebar = new ol.interaction.Select({
 layer: task.scalebar,
 featureOverlay: task.overlay });
-// Modifiers for external profile
-task.modify_external = new ol.interaction.Modify({
-layer: task.external,
-featureOverlay: task.overlay });
-task.select_external = new ol.interaction.Select({
-layer: task.external,
-featureOverlay: task.overlay });
-// Modifiers for internal profile
-task.modify_internal = new ol.interaction.Modify({
-layer: task.internal,
-featureOverlay: task.overlay });
-task.select_internal = new ol.interaction.Select({
-layer: task.internal,
-featureOverlay: task.overlay });
-// Modifiers for midline
-task.modify_midline = new ol.interaction.Modify({
-layer: task.midline,
-featureOverlay: task.overlay });
-task.select_midline = new ol.interaction.Select({
-layer: task.midline,
-featureOverlay: task.overlay });
-// Modifiers for neckjoin
-task.modify_neckjoin = new ol.interaction.Modify({
-layer: task.neckjoin,
-featureOverlay: task.overlay });
-task.select_neckjoin = new ol.interaction.Select({
-layer: task.neckjoin,
-featureOverlay: task.overlay });
-// Modifiers for left-hand handle
-task.modify_lhandle = new ol.interaction.Modify({
-layer: task.lhandle,
-featureOverlay: task.overlay });
-task.select_lhandle = new ol.interaction.Select({
-layer: task.lhandle,
-featureOverlay: task.overlay });
-// Modifiers for right-hand handle
-task.modify_rhandle = new ol.interaction.Modify({
-layer: task.rhandle,
-featureOverlay: task.overlay });
-task.select_rhandle = new ol.interaction.Select({
-layer: task.rhandle,
-featureOverlay: task.overlay });
-// Modifiers for handle section
-task.modify_section = new ol.interaction.Modify({
-layer: task.section,
-featureOverlay: task.overlay });
-task.select_section = new ol.interaction.Select({
-layer: task.section,
-featureOverlay: task.overlay });
+// // Modifiers for external profile
+// task.modify_external = new ol.interaction.Modify({
+// layer: task.external,
+// featureOverlay: task.overlay });
+// task.select_external = new ol.interaction.Select({
+// layer: task.external,
+// featureOverlay: task.overlay });
+// // Modifiers for internal profile
+// task.modify_internal = new ol.interaction.Modify({
+// layer: task.internal,
+// featureOverlay: task.overlay });
+// task.select_internal = new ol.interaction.Select({
+// layer: task.internal,
+// featureOverlay: task.overlay });
+// // Modifiers for midline
+// task.modify_midline = new ol.interaction.Modify({
+// layer: task.midline,
+// featureOverlay: task.overlay });
+// task.select_midline = new ol.interaction.Select({
+// layer: task.midline,
+// featureOverlay: task.overlay });
+// // Modifiers for neckjoin
+// task.modify_neckjoin = new ol.interaction.Modify({
+// layer: task.neckjoin,
+// featureOverlay: task.overlay });
+// task.select_neckjoin = new ol.interaction.Select({
+// layer: task.neckjoin,
+// featureOverlay: task.overlay });
+// // Modifiers for left-hand handle
+// task.modify_lhandle = new ol.interaction.Modify({
+// layer: task.lhandle,
+// featureOverlay: task.overlay });
+// task.select_lhandle = new ol.interaction.Select({
+// layer: task.lhandle,
+// featureOverlay: task.overlay });
+// // Modifiers for right-hand handle
+// task.modify_rhandle = new ol.interaction.Modify({
+// layer: task.rhandle,
+// featureOverlay: task.overlay });
+// task.select_rhandle = new ol.interaction.Select({
+// layer: task.rhandle,
+// featureOverlay: task.overlay });
+// // Modifiers for handle section
+// task.modify_section = new ol.interaction.Modify({
+// layer: task.section,
+// featureOverlay: task.overlay });
+// task.select_section = new ol.interaction.Select({
+// layer: task.section,
+// featureOverlay: task.overlay });
 
-// Set up map
+// Set up map itself
 task.map = new ol.Map({
 layers: [
 new ol.layer.Image({
@@ -936,13 +937,13 @@ imageExtent: task.pixelProjection.getExtent()
 })
 ,
 task.scalebar,
-task.external,
-task.internal,
-task.midline,
-task.neckjoin,
-task.lhandle,
-task.rhandle,
-task.section,
+// task.external,
+// task.internal,
+// task.midline,
+// task.neckjoin,
+// task.lhandle,
+// task.rhandle,
+// task.section,
 ],
 renderer: 'canvas',
 target: 'map_' + task.id,
@@ -964,60 +965,60 @@ task.draw_scalebar = new ol.interaction.Draw({
 source: task.source_scalebar,
 type: 'LineString',
 });
-task.draw_external = new ol.interaction.Draw({
-source: task.source_external,
-type: 'Polygon',
-});
-task.draw_internal = new ol.interaction.Draw({
-source: task.source_internal,
-type: 'Polygon',
-});
-task.draw_midline = new ol.interaction.Draw({
-source: task.source_midline,
-type: 'Polygon',
-});
-task.draw_neckjoin = new ol.interaction.Draw({
-source: task.source_neckjoin,
-type: 'Polygon',
-});
-task.draw_lhandle = new ol.interaction.Draw({
-source: task.source_lhandle,
-type: 'Polygon',
-});
-task.draw_rhandle = new ol.interaction.Draw({
-source: task.source_rhandle,
-type: 'Polygon',
-});
-task.draw_section = new ol.interaction.Draw({
-source: task.source_section,
-type: 'Polygon',
-});
+// task.draw_external = new ol.interaction.Draw({
+// source: task.source_external,
+// type: 'Polygon',
+// });
+// task.draw_internal = new ol.interaction.Draw({
+// source: task.source_internal,
+// type: 'Polygon',
+// });
+// task.draw_midline = new ol.interaction.Draw({
+// source: task.source_midline,
+// type: 'Polygon',
+// });
+// task.draw_neckjoin = new ol.interaction.Draw({
+// source: task.source_neckjoin,
+// type: 'Polygon',
+// });
+// task.draw_lhandle = new ol.interaction.Draw({
+// source: task.source_lhandle,
+// type: 'Polygon',
+// });
+// task.draw_rhandle = new ol.interaction.Draw({
+// source: task.source_rhandle,
+// type: 'Polygon',
+// });
+// task.draw_section = new ol.interaction.Draw({
+// source: task.source_section,
+// type: 'Polygon',
+// });
 
-// When the first  polygon or line is completed, remove the drawInteraction
+// When the first polygon or line is completed, remove the drawInteraction
 task.draw_scalebar.on('drawend', function(evt) {
 task.scalebar = true;
 });
-task.draw_external.on('drawend', function(evt) {
-task.external = true;
-});
-task.draw_internal.on('drawend', function(evt) {
-task.internal = true;
-});
-task.draw_midline.on('drawend', function(evt) {
-task.midline = true;
-});
-task.draw_neckjoin.on('drawend', function(evt) {
-task.neckjoin = true;
-});
-task.draw_lhandle.on('drawend', function(evt) {
-task.lhandle = true;
-});
-task.draw_rhandle.on('drawend', function(evt) {
-task.rhandle = true;
-});
-task.draw_section.on('drawend', function(evt) {
-task.section = true;
-});
+// task.draw_external.on('drawend', function(evt) {
+// task.external = true;
+// });
+// task.draw_internal.on('drawend', function(evt) {
+// task.internal = true;
+// });
+// task.draw_midline.on('drawend', function(evt) {
+// task.midline = true;
+// });
+// task.draw_neckjoin.on('drawend', function(evt) {
+// task.neckjoin = true;
+// });
+// task.draw_lhandle.on('drawend', function(evt) {
+// task.lhandle = true;
+// });
+// task.draw_rhandle.on('drawend', function(evt) {
+// task.rhandle = true;
+// });
+// task.draw_section.on('drawend', function(evt) {
+// task.section = true;
+// });
 
 task.map.addInteraction(task.draw_scalebar);
 
@@ -1071,35 +1072,36 @@ if ($("#scalebar").hasClass("active")) {
 task.map.removeInteraction(task.modify_scalebar);
 task.map.removeInteraction(task.select_scalebar);
 task.map.addInteraction(task.draw_scalebar);
-} else if ($("#external").hasClass("active")) {
-task.map.removeInteraction(task.modify_external);
-task.map.removeInteraction(task.select_external);
-task.map.addInteraction(task.draw_external);
-} else if ($("#internal").hasClass("active")) {
-task.map.removeInteraction(task.modify_internal);
-task.map.removeInteraction(task.select_internal);
-task.map.addInteraction(task.draw_internal);
-} else if ($("#midline").hasClass("active")) {
-task.map.removeInteraction(task.modify_midline);
-task.map.removeInteraction(task.select_midline);
-task.map.addInteraction(task.draw_midline);
-} else if ($("#neckjoin").hasClass("active")) {
-task.map.removeInteraction(task.modify_neckjoin);
-task.map.removeInteraction(task.select_neckjoin);
-task.map.addInteraction(task.draw_neckjoin);
-} else if ($("#lhandle").hasClass("active")) {
-task.map.removeInteraction(task.modify_lhandle);
-task.map.removeInteraction(task.select_lhandle);
-task.map.addInteraction(task.draw_lhandle);
-} else if ($("#rhandle").hasClass("active")) {
-task.map.removeInteraction(task.modify_rhandle);
-task.map.removeInteraction(task.select_rhandle);
-task.map.addInteraction(task.draw_rhandle);
-} else {
-task.map.removeInteraction(task.modify_section);
-task.map.removeInteraction(task.select_section);
-task.map.addInteraction(task.draw_section);
-}
+} 
+// else if ($("#external").hasClass("active")) {
+// task.map.removeInteraction(task.modify_external);
+// task.map.removeInteraction(task.select_external);
+// task.map.addInteraction(task.draw_external);
+// } else if ($("#internal").hasClass("active")) {
+// task.map.removeInteraction(task.modify_internal);
+// task.map.removeInteraction(task.select_internal);
+// task.map.addInteraction(task.draw_internal);
+// } else if ($("#midline").hasClass("active")) {
+// task.map.removeInteraction(task.modify_midline);
+// task.map.removeInteraction(task.select_midline);
+// task.map.addInteraction(task.draw_midline);
+// } else if ($("#neckjoin").hasClass("active")) {
+// task.map.removeInteraction(task.modify_neckjoin);
+// task.map.removeInteraction(task.select_neckjoin);
+// task.map.addInteraction(task.draw_neckjoin);
+// } else if ($("#lhandle").hasClass("active")) {
+// task.map.removeInteraction(task.modify_lhandle);
+// task.map.removeInteraction(task.select_lhandle);
+// task.map.addInteraction(task.draw_lhandle);
+// } else if ($("#rhandle").hasClass("active")) {
+// task.map.removeInteraction(task.modify_rhandle);
+// task.map.removeInteraction(task.select_rhandle);
+// task.map.addInteraction(task.draw_rhandle);
+// } else {
+// task.map.removeInteraction(task.modify_section);
+// task.map.removeInteraction(task.select_section);
+// task.map.addInteraction(task.draw_section);
+// }
 
 } else if (answer == 'edit') {
 $("#draw").removeClass("active");
@@ -1109,35 +1111,36 @@ if ($("#scalebar").hasClass("active")) {
 task.map.removeInteraction(task.draw_scalebar);
 task.map.addInteraction(task.select_scalebar);
 task.map.addInteraction(task.modify_scalebar);
-} else if ($("#external").hasClass("active")) {
-task.map.removeInteraction(task.draw_external);
-task.map.addInteraction(task.select_external);
-task.map.addInteraction(task.modify_external);
-} else if ($("#internal").hasClass("active")) {
-task.map.removeInteraction(task.draw_internal);
-task.map.addInteraction(task.select_internal);
-task.map.addInteraction(task.modify_internal);
-} else if ($("#midline").hasClass("active")) {
-task.map.removeInteraction(task.draw_midline);
-task.map.addInteraction(task.select_midline);
-task.map.addInteraction(task.modify_midline);
-} else if ($("#neckjoin").hasClass("active")) {
-task.map.removeInteraction(task.draw_neckjoin);
-task.map.addInteraction(task.select_neckjoin);
-task.map.addInteraction(task.modify_neckjoin);
-} else if ($("#lhandle").hasClass("active")) {
-task.map.removeInteraction(task.draw_lhandle);
-task.map.addInteraction(task.select_lhandle);
-task.map.addInteraction(task.modify_lhandle);
-} else if ($("#rhandle").hasClass("active")) {
-task.map.removeInteraction(task.draw_rhandle);
-task.map.addInteraction(task.select_rhandle);
-task.map.addInteraction(task.modify_rhandle);
-} else {
-task.map.removeInteraction(task.draw_section);
-task.map.addInteraction(task.select_section);
-task.map.addInteraction(task.modify_section);
-}
+} 
+// else if ($("#external").hasClass("active")) {
+// task.map.removeInteraction(task.draw_external);
+// task.map.addInteraction(task.select_external);
+// task.map.addInteraction(task.modify_external);
+// } else if ($("#internal").hasClass("active")) {
+// task.map.removeInteraction(task.draw_internal);
+// task.map.addInteraction(task.select_internal);
+// task.map.addInteraction(task.modify_internal);
+// } else if ($("#midline").hasClass("active")) {
+// task.map.removeInteraction(task.draw_midline);
+// task.map.addInteraction(task.select_midline);
+// task.map.addInteraction(task.modify_midline);
+// } else if ($("#neckjoin").hasClass("active")) {
+// task.map.removeInteraction(task.draw_neckjoin);
+// task.map.addInteraction(task.select_neckjoin);
+// task.map.addInteraction(task.modify_neckjoin);
+// } else if ($("#lhandle").hasClass("active")) {
+// task.map.removeInteraction(task.draw_lhandle);
+// task.map.addInteraction(task.select_lhandle);
+// task.map.addInteraction(task.modify_lhandle);
+// } else if ($("#rhandle").hasClass("active")) {
+// task.map.removeInteraction(task.draw_rhandle);
+// task.map.addInteraction(task.select_rhandle);
+// task.map.addInteraction(task.modify_rhandle);
+// } else {
+// task.map.removeInteraction(task.draw_section);
+// task.map.addInteraction(task.select_section);
+// task.map.addInteraction(task.modify_section);
+// }
 
 } else if (answer == 'delete') {
 $("#draw").removeClass("active");
@@ -1155,43 +1158,44 @@ for(i=0;i<features.length;i++) {
 task.source_external.removeFeature(features[i]);
 }
 task.external = false;
-} else if ($("#internal").hasClass("active")) {
-var features = task.source_internal.getAllFeatures();
-for(i=0;i<features.length;i++) {
-task.source_internal.removeFeature(features[i]);
-}
-task.internal = false;
-} else if ($("#midline").hasClass("active")) {
-var features = task.source_midline.getAllFeatures();
-for(i=0;i<features.length;i++) {
-task.source_midline.removeFeature(features[i]);
-}
-task.midline = false;
-} else if ($("#neckjoin").hasClass("active")) {
-var features = task.source_neckjoin.getAllFeatures();
-for(i=0;i<features.length;i++) {
-task.source_neckjoin.removeFeature(features[i]);
-}
-task.neckjoin = false;
-} else if ($("#lhandle").hasClass("active")) {
-var features = task.source_lhandle.getAllFeatures();
-for(i=0;i<features.length;i++) {
-task.source_lhandle.removeFeature(features[i]);
-}
-task.lhandle = false;
-} else if ($("#rhandle").hasClass("active")) {
-var features = task.source_rhandle.getAllFeatures();
-for(i=0;i<features.length;i++) {
-task.source_rhandle.removeFeature(features[i]);
-}
-task.rhandle = false;
-} else {
-var features = task.source_section.getAllFeatures();
-for(i=0;i<features.length;i++) {
-task.source_section.removeFeature(features[i]);
-}
-task.section = false;
-}
+} 
+// else if ($("#internal").hasClass("active")) {
+// var features = task.source_internal.getAllFeatures();
+// for(i=0;i<features.length;i++) {
+// task.source_internal.removeFeature(features[i]);
+// }
+// task.internal = false;
+// } else if ($("#midline").hasClass("active")) {
+// var features = task.source_midline.getAllFeatures();
+// for(i=0;i<features.length;i++) {
+// task.source_midline.removeFeature(features[i]);
+// }
+// task.midline = false;
+// } else if ($("#neckjoin").hasClass("active")) {
+// var features = task.source_neckjoin.getAllFeatures();
+// for(i=0;i<features.length;i++) {
+// task.source_neckjoin.removeFeature(features[i]);
+// }
+// task.neckjoin = false;
+// } else if ($("#lhandle").hasClass("active")) {
+// var features = task.source_lhandle.getAllFeatures();
+// for(i=0;i<features.length;i++) {
+// task.source_lhandle.removeFeature(features[i]);
+// }
+// task.lhandle = false;
+// } else if ($("#rhandle").hasClass("active")) {
+// var features = task.source_rhandle.getAllFeatures();
+// for(i=0;i<features.length;i++) {
+// task.source_rhandle.removeFeature(features[i]);
+// }
+// task.rhandle = false;
+// } else {
+// var features = task.source_section.getAllFeatures();
+// for(i=0;i<features.length;i++) {
+// task.source_section.removeFeature(features[i]);
+// }
+// task.section = false;
+// }
 $("#draw").addClass("active");
 $("#delete").removeClass("active");
 }
@@ -1204,60 +1208,67 @@ if (typeof answer != 'undefined'){
 
 if (answer == 'gotostep2') {
 $("#step1").toggle();
-$("#step2").toggle();
-$("#scalebar").removeClass("active");
-$("#external").addClass("active");
-task.map.removeInteraction(task.draw_scalebar);
-task.map.addInteraction(task.draw_external);
-} else if (answer == 'gotostep3') {
-$("#external").removeClass("active");
-$("#internal").addClass("active");
-$("#step2").toggle();
-$("#step3").toggle();
-task.map.removeInteraction(task.draw_external);
-task.map.addInteraction(task.draw_internal);
-} else if (answer == 'gotostep4') {
-$("#internal").removeClass("active");
-$("#midline").addClass("active");
-$("#step3").toggle();
-$("#step4").toggle();
-task.map.removeInteraction(task.draw_internal);
-task.map.addInteraction(task.draw_midline);
-} else if (answer == 'gotostep5') {
-$("#midline").removeClass("active");
-$("#neckjoin").addClass("active");
-$("#step4").toggle();
-$("#step5").toggle();
-task.map.removeInteraction(task.draw_midline);
-task.map.addInteraction(task.draw_neckjoin);
-} else if (answer == 'gotostep6') {
-$("#neckjoin").removeClass("active");
-$("#lhandle").addClass("active");
-$("#step5").toggle();
-$("#step6").toggle();
-task.map.removeInteraction(task.draw_neckjoin);
-task.map.addInteraction(task.draw_lhandle);
-} else if (answer == 'gotostep7') {
-$("#lhandle").removeClass("active");
-$("#rhandle").addClass("active");
-$("#step6").toggle();
-$("#step7").toggle();
-task.map.removeInteraction(task.draw_lhandle);
-task.map.addInteraction(task.draw_rhandle);
-} else if (answer == 'gotostep8') {
-$("#rhandle").removeClass("active");
-$("#section").addClass("active");
-$("#step7").toggle();
-$("#step8").toggle();
-task.map.removeInteraction(task.draw_rhandle);
-task.map.addInteraction(task.draw_section);
-} else {
-$("#section").removeClass("active");
-$("#comments").addClass("active");
-$("#step8").toggle();
 $("#step9").toggle();
-task.map.removeInteraction(task.draw_section);
-} 
+$("#scalebar").removeClass("active");
+$("#comments").addClass("active");
+task.map.removeInteraction(task.draw_scalebar);
+}
+// if (answer == 'gotostep2') {
+// $("#step1").toggle();
+// $("#step2").toggle();
+// $("#scalebar").removeClass("active");
+// $("#external").addClass("active");
+// task.map.removeInteraction(task.draw_scalebar);
+// task.map.addInteraction(task.draw_external);
+// } else if (answer == 'gotostep3') {
+// $("#external").removeClass("active");
+// $("#internal").addClass("active");
+// $("#step2").toggle();
+// $("#step3").toggle();
+// task.map.removeInteraction(task.draw_external);
+// task.map.addInteraction(task.draw_internal);
+// } else if (answer == 'gotostep4') {
+// $("#internal").removeClass("active");
+// $("#midline").addClass("active");
+// $("#step3").toggle();
+// $("#step4").toggle();
+// task.map.removeInteraction(task.draw_internal);
+// task.map.addInteraction(task.draw_midline);
+// } else if (answer == 'gotostep5') {
+// $("#midline").removeClass("active");
+// $("#neckjoin").addClass("active");
+// $("#step4").toggle();
+// $("#step5").toggle();
+// task.map.removeInteraction(task.draw_midline);
+// task.map.addInteraction(task.draw_neckjoin);
+// } else if (answer == 'gotostep6') {
+// $("#neckjoin").removeClass("active");
+// $("#lhandle").addClass("active");
+// $("#step5").toggle();
+// $("#step6").toggle();
+// task.map.removeInteraction(task.draw_neckjoin);
+// task.map.addInteraction(task.draw_lhandle);
+// } else if (answer == 'gotostep7') {
+// $("#lhandle").removeClass("active");
+// $("#rhandle").addClass("active");
+// $("#step6").toggle();
+// $("#step7").toggle();
+// task.map.removeInteraction(task.draw_lhandle);
+// task.map.addInteraction(task.draw_rhandle);
+// } else if (answer == 'gotostep8') {
+// $("#rhandle").removeClass("active");
+// $("#section").addClass("active");
+// $("#step7").toggle();
+// $("#step8").toggle();
+// task.map.removeInteraction(task.draw_rhandle);
+// task.map.addInteraction(task.draw_section);
+// } else {
+// $("#section").removeClass("active");
+// $("#comments").addClass("active");
+// $("#step8").toggle();
+// $("#step9").toggle();
+// task.map.removeInteraction(task.draw_section);
+// } 
 
 }});
 
@@ -1280,69 +1291,69 @@ task.answer.scalebar = lines;
 var dimension = parseFloat($("#dimension").val());
 task.answer.dimension = dimension
 } 
-if (task.external) {
-var features = task.source_external.getAllFeatures();
-var polygons = [];
-for(i=0;i<features.length;i++) {
-var g = features[i].getGeometry();
-polygons.push(g.getCoordinates());
-}
-task.answer.external = polygons;
-} 
-if (task.internal) {
-var features = task.source_internal.getAllFeatures();
-var polygons = [];
-for(i=0;i<features.length;i++) {
-var g = features[i].getGeometry();
-polygons.push(g.getCoordinates());
-}
-task.answer.internal = polygons;
-}
-if (task.midline) {
-var features = task.source_midline.getAllFeatures();
-var polygons = [];
-for(i=0;i<features.length;i++) {
-var g = features[i].getGeometry();
-polygons.push(g.getCoordinates());
-}
-task.answer.midline = polygons;
-}
-if (task.neckjoin) {
-var features = task.source_neckjoin.getAllFeatures();
-var polygons = [];
-for(i=0;i<features.length;i++) {
-var g = features[i].getGeometry();
-polygons.push(g.getCoordinates());
-}
-task.answer.neckjoin = polygons;
-} 
-if (task.lhandle) {
-var features = task.source_lhandle.getAllFeatures();
-var polygons = [];
-for(i=0;i<features.length;i++) {
-var g = features[i].getGeometry();
-polygons.push(g.getCoordinates());
-}
-task.answer.lhandle = polygons;
-}
-if (task.rhandle) {
-var features = task.source_rhandle.getAllFeatures();
-var polygons = [];
-for(i=0;i<features.length;i++) {
-var g = features[i].getGeometry();
-polygons.push(g.getCoordinates());
-}
-task.answer.rhandle = polygons;
-} 
-if (task.section) {
-var features = task.source_section.getAllFeatures();
-var polygons = [];
-for(i=0;i<features.length;i++) {
-var g = features[i].getGeometry();
-polygons.push(g.getCoordinates());
-}
-task.answer.section = polygons;
-}
+// if (task.external) {
+// var features = task.source_external.getAllFeatures();
+// var polygons = [];
+// for(i=0;i<features.length;i++) {
+// var g = features[i].getGeometry();
+// polygons.push(g.getCoordinates());
+// }
+// task.answer.external = polygons;
+// } 
+// if (task.internal) {
+// var features = task.source_internal.getAllFeatures();
+// var polygons = [];
+// for(i=0;i<features.length;i++) {
+// var g = features[i].getGeometry();
+// polygons.push(g.getCoordinates());
+// }
+// task.answer.internal = polygons;
+// }
+// if (task.midline) {
+// var features = task.source_midline.getAllFeatures();
+// var polygons = [];
+// for(i=0;i<features.length;i++) {
+// var g = features[i].getGeometry();
+// polygons.push(g.getCoordinates());
+// }
+// task.answer.midline = polygons;
+// }
+// if (task.neckjoin) {
+// var features = task.source_neckjoin.getAllFeatures();
+// var polygons = [];
+// for(i=0;i<features.length;i++) {
+// var g = features[i].getGeometry();
+// polygons.push(g.getCoordinates());
+// }
+// task.answer.neckjoin = polygons;
+// } 
+// if (task.lhandle) {
+// var features = task.source_lhandle.getAllFeatures();
+// var polygons = [];
+// for(i=0;i<features.length;i++) {
+// var g = features[i].getGeometry();
+// polygons.push(g.getCoordinates());
+// }
+// task.answer.lhandle = polygons;
+// }
+// if (task.rhandle) {
+// var features = task.source_rhandle.getAllFeatures();
+// var polygons = [];
+// for(i=0;i<features.length;i++) {
+// var g = features[i].getGeometry();
+// polygons.push(g.getCoordinates());
+// }
+// task.answer.rhandle = polygons;
+// } 
+// if (task.section) {
+// var features = task.source_section.getAllFeatures();
+// var polygons = [];
+// for(i=0;i<features.length;i++) {
+// var g = features[i].getGeometry();
+// polygons.push(g.getCoordinates());
+// }
+// task.answer.section = polygons;
+// }
 task.answer.comments = $('#comments :input').val();
 
 pybossa.saveTask(task.id, task.answer).done(function() {
