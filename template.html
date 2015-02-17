@@ -512,8 +512,8 @@ new OpenLayers.Control.LayerSwitcher({roundedCornerColor: 'black'}),
 new OpenLayers.Control.Attribution()
 ],
 layers: [
-new OpenLayers.Image({
-source: new OpenLayers.ImageStatic({
+new OpenLayers.layer.Image({
+source: new OpenLayers.source.ImageStatic({
 url: task.info.url_b,
 imageSize: [1000, 1000],
 projection: task.pixelProjection,
