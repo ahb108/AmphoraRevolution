@@ -441,6 +441,14 @@ $("#done").text(data.done);
 });
 }
 
+function enableBtn() {
+    if ($("#answerbtn").hasClass("disabled")) {
+        $("#answerbtn").removeClass('disabled');
+        $("#answerbtn").show();
+        //$("#answerbtn").click(submitTask);
+    }
+}
+
 // Function to enable/disable the drawing controls. Only one can be active at a time
 function toggleControl(task, control) {
 console.log("Activating control " + control + " for Task " + task.id);
