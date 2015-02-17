@@ -116,19 +116,19 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 
 		<div id="step9" style="display:none;">
 			<h1>Step 9. Add any comments and submit:</h1>
-        	<form id="comments" role="form">        
-            	<div class="form-group">
-                	<label class="control-label" for="transcription">Comments</label>
-                	<textarea class="form-control" rows="5" name="comments" placeholder="(Add comments here or leave blank)"></textarea>
-            	</div>
-        	</form>
+			<form id="comments" role="form">
+				<div class="form-group">
+					<label class="control-label" for="transcription">Comments</label>
+					<textarea class="form-control" rows="5" name="comments" placeholder="(Add comments here or leave blank)"></textarea>
+				</div>
+			</form>
 			<div class="btn-group">
 				<button id="btn-save" class="btn btn-success btn-answer" value='save'>
 					<i class="icon icon-white icon-save"></i> Submit All
 				</button>
 			</div>
 		</div>
-		
+
 	</div>
 </div>
 
@@ -245,32 +245,42 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 			<div id="0" class="modal-body" style="display:none">
 				<p>
 					This application is broken up into a series of carefully structured steps. When you participate, the platform will load a scanned drawing of an amphora such as the one below.
-					These drawings are typical of how archaeologists traditionally record vessel shapes, with the outside of the vessel shown on one side of the drawing and the interior profile shown on the other side 
+					These drawings are typical of how archaeologists traditionally record vessel shapes, with the outside of the vessel shown on one side of the drawing and the interior profile shown on the other side
 					(sometimes also with a further section showing the handle shape).
 				</p>
-				<p>	
+				<p>
 					We are asking for help in digitising these drawings as 2D polygons that can then be used for futher analysis. These polygons also have the advantage of being ready for conversion into a 3D object.
 				</p>
 				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/intro.png" width="100%" class="img-polaroid" alt="An example of an amphora loaded into the application" />
 			</div>
 			<div id="1" class="modal-body" style="display:none">
 				<p>
-				Once the scanned drawing has been loaded, you will proceed in a series of steps as follows:
-				<ul>
-					<li>Calibrate the image's dimensions by drawing a line across the scale-bar shown in the drawing and entering its stated width in metres.</li>
-					<li>Draw the external shape of the amphora as a polygon.</li>
-					<li>Draw the interior of the amphora as two distinct polygons, one for the main cavity and another for neck portion.</li>
-					<li>Draw a box around one half of the amphora where there is no profile information (which is useful for later processing)</li>
-					<li>Draw the handles and handle section (if shown).</li>
-				</ul>
+					Once the scanned drawing has been loaded, you will proceed in a series of steps as follows:
+					<ul>
+						<li>
+							Calibrate the image's dimensions by drawing a line across the scale-bar shown in the drawing and entering its stated width in metres.
+						</li>
+						<li>
+							Draw the external shape of the amphora as a polygon.
+						</li>
+						<li>
+							Draw the interior of the amphora as two distinct polygons, one for the main cavity and another for neck portion.
+						</li>
+						<li>
+							Draw a box around one half of the amphora where there is no profile information (which is useful for later processing)
+						</li>
+						<li>
+							Draw the handles and handle section (if shown).
+						</li>
+					</ul>
 				</p>
 				<p>
-					For most of the steps in each task, you will be asked to digitise a line or polygon by clicking along its outline. 
-					To finish a line or polygon, double click on the last point you wish to enter. 
-					If you are drawing a polygon, the last point your enter by double-clicking will automatically be joined  back up to the first point you created. 
-					In each step of the task, a digitising toolbar provides options to draw, edit or delete features. 
+					For most of the steps in each task, you will be asked to digitise a line or polygon by clicking along its outline.
+					To finish a line or polygon, double click on the last point you wish to enter.
+					If you are drawing a polygon, the last point your enter by double-clicking will automatically be joined  back up to the first point you created.
+					In each step of the task, a digitising toolbar provides options to draw, edit or delete features.
 					Once you have completed a stpe, you can  click 'Next' to proceed to the next part of the task.
-					On the last step, you will no longer have a 'Next' button, but will notw see 'Submit all' that you can click to finsh your task. 
+					On the last step, you will no longer have a 'Next' button, but will notw see 'Submit all' that you can click to finsh your task.
 				</p>
 			</div>
 			<div id="2" class="modal-body" style="display:none">
@@ -302,51 +312,51 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 				<p>
 					In step 1, you will be asked to draw a line from on end of the scale-bar shown in the drawing to the other.
 				</p>
-				<ul> 
-				<li>
-					Please only enter two points to create the line, not more!
-				</li>
-				<li>
-					Once you have drawn the line, it will appear in green. Then please enter the stated width of the line in the box provided above the drawing.
-				</li>
-				<li>
-					Please make sure you input this width in metres (so if the scalebar says 50cm, enter 0.5).
-				</li>
+				<ul>
+					<li>
+						Please only enter two points to create the line, not more!
+					</li>
+					<li>
+						Once you have drawn the line, it will appear in green. Then please enter the stated width of the line in the box provided above the drawing.
+					</li>
+					<li>
+						Please make sure you input this width in metres (so if the scalebar says 50cm, enter 0.5).
+					</li>
 				</ul>
 				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/step1.png" width="80%" alt="Step 1 example" />
 			</div>
-			
+
 			<div id="4" class="modal-body" style="display:none">
 				<p>
 					In step 2, you will be asked to draw a polygon outlining the external shape of the amphora.
-					You line will be shown in yellow once you complete the sketch. 
-					Around handle joins, you may need to guess how the oultine continues, 
+					You line will be shown in yellow once you complete the sketch.
+					Around handle joins, you may need to guess how the oultine continues,
 					but your end result should look something like the one below.
 				</p>
 				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/step2.png" width="50%" alt="Step 2 example" />
 			</div>
-			
+
 			<div id="5" class="modal-body" style="display:none">
 				<p>
 					In step 3, you will be asked to draw a polygon outlining the internal cavity of the amphora.
 				</p>
-				<p> 
-					Your polygon outline will be shown in pink once you complete the sketch. Your focus will be on drawing the intrnal shape of the vessel as 
-					shown on the left-hand side of the drawing, and your polygon should extend an arbitrary amount over the top of vessel and over the vessel mid-line 
-					(it will be clipped accurately in post-processing). You finished polygon (overlayed on the results from the preivous steps) 
+				<p>
+					Your polygon outline will be shown in pink once you complete the sketch. Your focus will be on drawing the intrnal shape of the vessel as
+					shown on the left-hand side of the drawing, and your polygon should extend an arbitrary amount over the top of vessel and over the vessel mid-line
+					(it will be clipped accurately in post-processing). You finished polygon (overlayed on the results from the preivous steps)
 					should look something like the one below.
 				</p>
 				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/step3.png" width="50%" alt="Step 3 example" />
 			</div>
-			
+
 			<div id="6" class="modal-body" style="display:none">
 				<p>
 					In steps 4 and 5, you will be asked to draw polygons outlining the non-profile portion of the drawing (the right-hand side in most cases) and the neck portion of the amphora.
-					Your polygon for the vessel mid-line should delineate this mid-line exactly but then extend an arbitrary amount above, below and to the right of the vessel. 
-					(it will be used for post-processing). Your polygon for the vessel neck-join should be a box in which the bottom side defines what you think to be the breakpoint between the main body of the vessel and its neck. 
+					Your polygon for the vessel mid-line should delineate this mid-line exactly but then extend an arbitrary amount above, below and to the right of the vessel.
+					(it will be used for post-processing). Your polygon for the vessel neck-join should be a box in which the bottom side defines what you think to be the breakpoint between the main body of the vessel and its neck.
 					Sometimes this is hard to judge, but do your best.
-					Your polygon outlines will be shown in orange and maroon respectively once you complete the sketches. 
-					Your finished polygons (overlayed on the results from the preivous steps) 
+					Your polygon outlines will be shown in orange and maroon respectively once you complete the sketches.
+					Your finished polygons (overlayed on the results from the preivous steps)
 					should look something like the ones below.
 				</p>
 				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/steps45.png" width="40%" alt="Steps 4-5 example" />
@@ -355,15 +365,15 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 			<div id="7" class="modal-body" style="display:none">
 				<p>
 					In steps 6 to 8, you will be asked to draw polygons outlining the left-hand handle, right-hand handle and handle sections, if these are shown.
-					For the left and right handles, please make sure that you draw polygons that extend into the space between the external and internal profiles of the amphora, 
+					For the left and right handles, please make sure that you draw polygons that extend into the space between the external and internal profiles of the amphora,
 					as shown below (these will be clipped back in post-processing):
 				</p>
 				<img src="http://micropasts-other.s3.amazonaws.com/other/amphs1tut/steps678.png" width="40%" alt="Steps 6-8 example" />
 			</div>
-						
+
 			<div id="8" class="modal-body" style="display:none">
 				<p>
-					In the last step, you will be asked if you wish to enter any of your own comments 
+					In the last step, you will be asked if you wish to enter any of your own comments
 					(e.g. concerns you have about this drawing or notes about incomplete parts). Please keep these brief,
 					as you can always post lengthier questions or comments on our <a href="http://community.micropasts.org" title="Community forum">community forum</a>.
 				</p>
@@ -535,7 +545,6 @@ color: [0, 153, 255, 1]
 // layer: task.scalebar,
 // featureOverlay: task.overlay });
 
-
 // Set up map itself
 task.map = new ol.Map({
 layers: [
@@ -576,12 +585,10 @@ source: task.source_scalebar,
 type: 'LineString',
 });
 
-
 // When the first polygon or line is completed, remove the drawInteraction
 task.draw_scalebar.on('drawend', function(evt) {
 task.scalebar = true;
 });
-
 
 task.map.addInteraction(task.draw_scalebar);
 
@@ -611,8 +618,8 @@ loadUserProgress();
 $("#step1").show();
 $("#dimension").val("");
 $(':input','#comments')
-           .not(':button, :submit, :reset, :hidden, :radio')
-           .val('');
+.not(':button, :submit, :reset, :hidden, :radio')
+.val('');
 $('#task-id').html(task.id);
 $("#map_" + task.id).show();
 
@@ -628,7 +635,7 @@ if ($("#scalebar").hasClass("active")) {
 task.map.removeInteraction(task.modify_scalebar);
 task.map.removeInteraction(task.select_scalebar);
 task.map.addInteraction(task.draw_scalebar);
-} 
+}
 
 } else if (answer == 'edit') {
 $("#draw").removeClass("active");
@@ -638,7 +645,7 @@ if ($("#scalebar").hasClass("active")) {
 task.map.removeInteraction(task.draw_scalebar);
 task.map.addInteraction(task.select_scalebar);
 task.map.addInteraction(task.modify_scalebar);
-} 
+}
 
 } else if (answer == 'delete') {
 $("#draw").removeClass("active");
@@ -656,7 +663,7 @@ for(i=0;i<features.length;i++) {
 task.source_external.removeFeature(features[i]);
 }
 task.external = false;
-} 
+}
 
 $("#draw").addClass("active");
 $("#delete").removeClass("active");
@@ -696,7 +703,7 @@ lines.push(g.getCoordinates());
 task.answer.scalebar = lines;
 var dimension = parseFloat($("#dimension").val());
 task.answer.dimension = dimension
-} 
+}
 
 task.answer.comments = $('#comments :input').val();
 
