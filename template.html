@@ -517,10 +517,9 @@ source: new OpenLayers.source.ImageStatic({
 url: task.info.url_b,
 imageSize: [1000, 1000],
 projection: task.pixelProjection,
+imageExtent: task.pixelProjection.getExtent()
 })
 })
-,
-task.scalebar,
 ],
 renderer: 'canvas',
 target: 'map_' + task.id,
@@ -529,7 +528,7 @@ projection: task.pixelProjection,
 zoom: 1
 })
 });
-div_map.css("display", "none");
+
 
 
 
