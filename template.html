@@ -503,21 +503,14 @@ units: 'pixels',
 extent: [0, 0, 100, 100]
 });
 
-task.map = new OpenLayers.Map("map_" + task.id, {
-controls: [
+// Set up map itself
+task.map = new OpenLayers.Map({
+	controls: [
 new OpenLayers.Control.Navigation(),
 new OpenLayers.Control.PanZoomBar(),
 new OpenLayers.Control.LayerSwitcher({roundedCornerColor: 'black'}),
 new OpenLayers.Control.Attribution()
 ],
-projection: task.pixelProjection,
-url: task.info.url_b,
-imageSize: [1000, 1000],
-imageExtent: task.pixelProjection.getExtent(),
-});
-
-// Set up map itself
-task.map = new OpenLayers.Map({
 layers: [
 new OpenLayers.layer.Image({
 source: new OpenLayers.source.ImageStatic({
