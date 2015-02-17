@@ -947,7 +947,7 @@ task.section,
 ],
 renderer: 'canvas',
 target: 'map_' + task.id,
-view: new ol.View2D({
+view: new ol.View({
 projection: task.pixelProjection,
 center: ol.extent.getCenter(task.pixelProjection.getExtent()),
 zoom: 1
