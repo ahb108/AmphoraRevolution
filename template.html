@@ -922,6 +922,7 @@ task.overlay.setMap(task.map);
 // Set up map
 task.map = new ol.Map({
 interactions: ol.interaction.defaults().extend([task.select_scalebar, task.modify_scalebar]),
+target: 'task.map'
 layers: [
 new ol.layer.Image({
 source: new ol.source.ImageStatic({
