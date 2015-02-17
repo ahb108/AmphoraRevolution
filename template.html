@@ -511,7 +511,42 @@ new OpenLayers.Control.LayerSwitcher({roundedCornerColor: 'black'}),
 new OpenLayers.Control.Attribution()
 ],
 projection: task.pixelProjection,
+url: task.info.url_b,
+imageSize: [1000, 1000],
+imageExtent: task.pixelProjection.getExtent(),
 });
+
+// Set up map itself
+task.map = new OpenLayers.Map({
+layers: [
+new OpenLayers.layer.Image({
+source: new OpenLayers.source.ImageStatic({
+attributions: [
+new OpenLayers.Attribution({
+html: '&copy; <a href="http://micropasts.org">MicroPasts</a>'
+})
+],
+url: task.info.url_b,
+imageSize: [1000, 1000],
+projection: task.pixelProjection,
+imageExtent: task.pixelProjection.getExtent()
+})
+})
+,
+task.scalebar,
+],
+renderer: 'canvas',
+target: 'map_' + task.id,
+view: new OpenLayers.View2D({
+projection: task.pixelProjection,
+center: OpenLayers.Extent.getCenter(task.pixelProjection.getExtent()),
+zoom: 1
+})
+});
+div_map.css("display", "none");
+
+
+
 
 var styleBlack = new OpenLayers.StyleMap({
 "default": new OpenLayers.Style({
@@ -570,38 +605,6 @@ delete:     new OpenLayers.Control.SelectFeature(task.areaLayer),
 for (var key in task.drawControls) {
 task.map.addControl(task.drawControls[key]);
 }
-
-// Set up map itself
-task.map = new OpenLayers.Map({
-layers: [
-new ol.layer.Image({
-source: new ol.source.ImageStatic({
-attributions: [
-new ol.Attribution({
-html: '&copy; <a href="http://micropasts.org">MicroPasts</a>'
-})
-],
-url: task.info.url_b,
-imageSize: [1000, 1000],
-projection: task.pixelProjection,
-imageExtent: task.pixelProjection.getExtent()
-})
-})
-,
-task.scalebar,
-],
-renderer: 'canvas',
-target: 'map_' + task.id,
-view: new ol.View2D({
-projection: task.pixelProjection,
-center: ol.extent.getCenter(task.pixelProjection.getExtent()),
-zoom: 1
-})
-});
-var zoomslider;
-zoomslider = new ol.control.ZoomSlider();
-task.map.addControl(zoomslider);
-div_map.css("display", "none");
 
 var typeSelect = document.getElementById('type');
 
