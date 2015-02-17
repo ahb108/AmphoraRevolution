@@ -537,13 +537,13 @@ color: [0, 153, 255, 1]
 })
 });
 
-// // Modifiers for scalebar
-// task.modify_scalebar = new ol.interaction.Modify({
-// layer: task.scalebar,
-// featureOverlay: task.overlay });
-// task.select_scalebar = new ol.interaction.Select({
-// layer: task.scalebar,
-// featureOverlay: task.overlay });
+// Modifiers for scalebar
+task.modify_scalebar = new ol.interaction.Modify({
+layer: task.scalebar,
+featureOverlay: task.overlay });
+task.select_scalebar = new ol.interaction.Select({
+layer: task.scalebar,
+featureOverlay: task.overlay });
 
 // Set up map itself
 task.map = new ol.Map({
