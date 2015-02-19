@@ -59,8 +59,8 @@
 		font-family: 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
 	}
 </style>
-<script src="http://ol3js.org/en/master/build/ol-debug.js" type="text/javascript"></script>
-<!-- <script src="/static/js/vendor/ol3photomask.js" type="text/javascript"></script> -->
+<!-- <script src="http://ol3js.org/en/master/build/ol.js" type="text/javascript"></script> -->
+<script src="/static/js/vendor/ol3photomask.js" type="text/javascript"></script>
 <style>
 	.map {
 		height: 500px;
@@ -863,59 +863,59 @@ color: [0, 153, 255, 1]
 // Modifiers for scalebar
 task.modify_scalebar = new ol.interaction.Modify({
 layer: task.scalebar,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 task.select_scalebar = new ol.interaction.Select({
 layer: task.scalebar,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 // Modifiers for external profile
 task.modify_external = new ol.interaction.Modify({
 layer: task.external,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 task.select_external = new ol.interaction.Select({
 layer: task.external,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 // Modifiers for internal profile
 task.modify_internal = new ol.interaction.Modify({
 layer: task.internal,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 task.select_internal = new ol.interaction.Select({
 layer: task.internal,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 // Modifiers for midline
 task.modify_midline = new ol.interaction.Modify({
 layer: task.midline,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 task.select_midline = new ol.interaction.Select({
 layer: task.midline,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 // Modifiers for neckjoin
 task.modify_neckjoin = new ol.interaction.Modify({
 layer: task.neckjoin,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 task.select_neckjoin = new ol.interaction.Select({
 layer: task.neckjoin,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 // Modifiers for left-hand handle
 task.modify_lhandle = new ol.interaction.Modify({
 layer: task.lhandle,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 task.select_lhandle = new ol.interaction.Select({
 layer: task.lhandle,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 // Modifiers for right-hand handle
 task.modify_rhandle = new ol.interaction.Modify({
 layer: task.rhandle,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 task.select_rhandle = new ol.interaction.Select({
 layer: task.rhandle,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 // Modifiers for handle section
 task.modify_section = new ol.interaction.Modify({
 layer: task.section,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 task.select_section = new ol.interaction.Select({
 layer: task.section,
-features: task.overlay.getFeatures() });
+featureOverlay: task.overlay });
 
 // Set up map
 task.map = new ol.Map({
@@ -945,7 +945,7 @@ task.section,
 ],
 renderer: 'canvas',
 target: 'map_' + task.id,
-view: new ol.View({
+view: new ol.View2D({
 projection: task.pixelProjection,
 center: ol.extent.getCenter(task.pixelProjection.getExtent()),
 zoom: 1
