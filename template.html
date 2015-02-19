@@ -863,7 +863,7 @@ color: [0, 153, 255, 1]
 // Modifiers for scalebar
 task.modify_scalebar = new ol.interaction.Modify({
 layer: task.scalebar,
-featureOverlay: task.overlay });
+features: task.overlay.getFeatures() });
 task.select_scalebar = new ol.interaction.Select({
 layer: task.scalebar,
 featureOverlay: task.overlay });
