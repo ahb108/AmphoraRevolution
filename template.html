@@ -536,7 +536,7 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 			<div class="modal-footer">
 				<a id="prevBtn" href="#" onclick="showStep('prev')" class="btn btn-default">Previous</a>
 				<a id="nextBtn" href="#" onclick="showStep('next')" class="btn btn-success">Next</a>
-				<a id="startContrib" href="../newtask" class="btn btn-primary" style="display:none"><i class="glyphicon glyphicon-thumbs-up"></i> Let's start!</a>
+				<a id="closeBtn" href="#" onclick="showStep('close')" class="btn btn-primary" style="display:none"><i class="glyphicon glyphicon-thumbs-up"></i> Back to task!</a>
 			</div>
 		</div>
 	</div>
@@ -557,14 +557,15 @@ Task DOM for loading the S3 Images using class="skeleton" to identify the elemen
 		} else {
 			$("#prevBtn").show();
 		}
-
 		if (step == 8) {
 			$("#nextBtn").hide();
-			$("#startContrib").show();
+			$("#closeBtn").show();
 		}
 		$("#" + step).show();
+		if (action == 'close') {
+			$("#modal").modal('hide');
+		}
 	}
-
 	showStep('next');
 	$("#modal").modal('show'); 
 </script>
